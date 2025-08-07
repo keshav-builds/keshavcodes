@@ -1,14 +1,6 @@
-# Sleek Portfolio by ramxcodes
+# Sleek Portfolio by keshavcodes
 
 A modern, responsive portfolio website built with Next.js 15, TypeScript, Tailwind CSS, and Shadcn UI. Features a blog system, project showcase, work experience timeline, and contact form with Telegram integration.
-
-![Portfolio Preview](/public/meta/hero.png)
-
-## Deploy 
-
-Click here to your portfolio template now:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Framxcodes%2Fsleek-portfolio&env=TELEGRAM_BOT_TOKEN,TELEGRAM_CHAT_ID,GEMINI_API_KEY,NEXT_PUBLIC_URL,NEXT_PUBLIC_UMAMI_SRC,NEXT_PUBLIC_UMAMI_ID)
 
 ## Features
 
@@ -35,24 +27,12 @@ Before you begin, ensure you have the following installed:
 Create a `.env` file in the root directory with the following variables:
 
 ```env
-TELEGRAM_BOT_TOKEN="your-token"
-TELEGRAM_CHAT_ID="your-chat-id"
 GEMINI_API_KEY="your-api-key"
 NODE_ENV="development"
 NEXT_PUBLIC_URL="http://localhost:3000"
 NEXT_PUBLIC_UMAMI_SRC="your-umami-script-url"
 NEXT_PUBLIC_UMAMI_ID="your-umami-website-id"
 ```
-
-### Setting up Telegram Integration
-
-1. Create a new bot with [@BotFather](https://t.me/botfather) on Telegram
-2. Copy the bot token provided
-3. Start a chat with your bot
-4. Get your chat ID by:
-   - Add your `bot` in a group as `admin`
-   - Then send `/id` to [@rosebot](https://t.me/MissRose_bot)
-   - Boom! you get your `id`
 
 ### Setting up Umami Analytics
 
@@ -70,36 +50,6 @@ NEXT_PUBLIC_UMAMI_ID="your-umami-website-id"
    NEXT_PUBLIC_UMAMI_ID="your-website-id"
    ```
 
-## Getting Started
-
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/ramxcodes/sleek-portfolio.git
-   cd sleek-portfolio
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   # Using bun (recommended)
-   bun install
-
-   # Using npm
-   npm install
-   ```
-
-3. Run the development server:
-
-   ```bash
-   # Using bun
-   bun dev
-
-   # Using npm
-   npm run dev
-   ```
-
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Configuration
 
@@ -147,6 +97,4 @@ export const NewTechIcon = () => {
 2. Add metadata and content following existing project structure
 3. Add project thumbnail in `public/project/`
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
