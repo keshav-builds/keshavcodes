@@ -1,15 +1,17 @@
 import Footer from '@/components/common/Footer';
 import Navbar from '@/components/common/Navbar';
 import { Quote } from '@/components/common/Quote';
+
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import ReactLenis from 'lenis/react';
 import { ViewTransitions } from 'next-view-transitions';
 import UmamiAnalytics from '@/components/analytics/UmamiAnalytics';
 import Providers from '@/components/common/Providers';
 import GridBackgroundDemo from '@/components/common/gridBackgroundDemo'; 
+import  BackToTop  from '@/components/common/BackToTop';
+export const metadata = getMetadata('/');
 import './globals.css';
 
-export const metadata = getMetadata('/');
 
 export default function RootLayout({
   children,
@@ -18,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <ViewTransitions>
-      <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
+      <html lang="en"  className="dark" style={{ colorScheme: 'dark' }}>
         <body className="relative font-hanken-grotesk antialiased">
           <Providers>
             <ReactLenis root>
@@ -33,6 +35,7 @@ export default function RootLayout({
                 <Quote />
                 <Footer />
               </div>
+              <BackToTop />
               <UmamiAnalytics />
             </ReactLenis>
           </Providers>

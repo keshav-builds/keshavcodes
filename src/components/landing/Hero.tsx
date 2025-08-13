@@ -3,7 +3,7 @@ import { parseTemplate } from '@/lib/hero';
 import { Link } from 'next-view-transitions';
 import Image from 'next/image';
 import React from 'react';
-
+import { TextGenerateEffect } from "../ui/text-generate-effect";
 import Container from '../common/Container';
 import Skill from '../common/Skill';
 import CV from '../svgs/CV';
@@ -54,16 +54,20 @@ export default function Hero() {
       <Image
         src={avatar}
         alt="hero"
-        width={100}
-        height={100}
+        width={150}
+        height={180}
         className="size-24 rounded-full dark:bg-yellow-300 bg-blue-300"
       />
 
       {/* Text Area */}
       <div className="mt-8 flex flex-col gap-2">
-        <h1 className="text-4xl font-bold">
-          Hi, I&apos;m {name} — <span className="text-secondary">{title}</span>
-        </h1>
+      <h1 className="text-4xl font-bold">
+  Hi, I&apos;m {name}{" "}
+   <span className="inline-block animate-wave origin-bottom-right">👋</span>{" "}
+  <span className="text-secondary inline-block align-baseline">
+    <TextGenerateEffect words={title} />
+  </span>
+</h1>
 
         <div className="mt-4 flex flex-wrap items-center gap-x-1.5 gap-y-2 text-base md:text-lg text-neutral-500 whitespace-pre-wrap">
           {renderDescription()}

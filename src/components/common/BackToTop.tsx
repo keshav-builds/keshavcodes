@@ -2,7 +2,6 @@
 
 import { ArrowUp } from 'lucide-react';
 import React from 'react';
-
 import { Button } from '../ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
