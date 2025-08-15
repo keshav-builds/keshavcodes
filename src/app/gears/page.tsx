@@ -1,12 +1,9 @@
 import Container from '@/components/common/Container';
-import Monitor from '@/components/svgs/devices/Monitor';
 import { Separator } from '@/components/ui/separator';
-import { devices, software, webExtensions } from '@/config/Gears';
-import { generateMetadata as getMetadata } from '@/config/Meta';
-import { ArrowUpRight, Puzzle } from 'lucide-react';
-import { Link } from 'next-view-transitions';
 import { Metadata } from 'next';
+import { generateMetadata as getMetadata } from '@/config/Meta';
 import React from 'react';
+import { gitCommands } from '@/config/GitCheatsheet';
 
 export const metadata: Metadata = {
   ...getMetadata('/gears'),
@@ -18,9 +15,9 @@ export const metadata: Metadata = {
       follow: true,
       'max-video-preview': -1,
       'max-image-preview': 'large',
-      'max-snippet': -1
-    }
-  }
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function GearsPage() {
@@ -29,87 +26,69 @@ export default function GearsPage() {
       <div className="space-y-8">
         {/* Header */}
         <div className="space-y-4 text-center">
-          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-            Gears
-          </h1>
+          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl ">Git Cheatsheet</h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            My gears and tools i use to get my work done.
+            My personal, go-to set of <strong>Git commands</strong> I use daily. Perfect for when you need a quick
+            reference or just getting started!
           </p>
         </div>
         <Separator />
 
-        {/* Devices Section */}
-        <div className="space-y-4">
-          <h2 className="text-2xl font-semibold">Devices</h2>
-          <div className="flex flex-col flex-wrap gap-4">
-            {devices.map((device) => (
-              <div key={device.name} className="flex items-center gap-4">
-                <div className="p-2 bg-muted rounded-md flex items-center justify-center text-[#736F70] border border-black/10 dark:border-white/10">
-                  {device.icon}
-                </div>
-                <div className="flex flex-col">
-                  <h3 className="text-sm text-secondary">{device.name}</h3>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Git commands section */}
+        {gitCommands.map(({ category, commands }) => (
+          <section key={category} className="space-y-4">
+            <h2 className="text-2xl font-semibold">{category}</h2>
 
-        {/* Web Extensions Section */}
-        <div className="space-y-4 pt-10">
-          <div className="flex items-center gap-4">
-            <div className="p-2 bg-muted rounded-md flex items-center justify-center text-[#736F70] border border-black/10 dark:border-white/10">
-              <Puzzle className="size-4" />
+            {/* Desktop: table layout */}
+            <div className="hidden md:block overflow-x-auto">
+              <table className="min-w-full border border-gray-300 dark:border-gray-700 rounded-md overflow-hidden">
+                <thead className="bg-gray-100 dark:bg-gray-800">
+                  <tr>
+                    <th className="text-left px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200">
+                      Command
+                    </th>
+                    <th className="text-left px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200">
+                      Description
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                  {commands.map(({ cmd, desc }) => (
+                    <tr key={cmd}>
+                      <td className="py-2 px-4 whitespace-nowrap font-mono text-sm text-emerald-600 dark:text-emerald-300">
+                        <code>{cmd}</code>
+                      </td>
+                      <td className="py-2 px-4 text-sm text-gray-800 dark:text-gray-300">{desc}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-            <h2 className="text-2xl font-semibold">Web Extensions</h2>
-          </div>
-          <div className="flex flex-col flex-wrap gap-4 mt-8">
-            {webExtensions.map((extension, index) => (
-              <div key={extension.name} className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <div className="px-2 py-1 bg-muted rounded-md flex items-center justify-center text-[#736F70] border border-black/10 dark:border-white/10">
-                    <span className="text-sm text-secondary">{index + 1}</span>
-                  </div>
-                  <h3 className="text-sm text-secondary flex items-center gap-1 ml-4">
-                    <Link target="_blank" href={extension.href}>
-                      {extension.name}
-                    </Link>
-                    <ArrowUpRight className="size-4" />
-                  </h3>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        {/* Software Section */}
-        <div className="space-y-4 pt-10">
-          <div className="flex items-center gap-4">
-            <div className="p-2 bg-muted rounded-md flex items-center justify-center text-[#736F70] border border-black/10 dark:border-white/10">
-              <Monitor className="size-4" />
-            </div>
-            <h2 className="text-2xl font-semibold">Software</h2>
-          </div>
-          <div className="flex flex-col flex-wrap gap-4 mt-8">
-            {software.map((app, index) => (
-              <div key={app.name} className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <div className="px-2 py-1 bg-muted rounded-md flex items-center justify-center text-[#736F70] border border-black/10 dark:border-white/10">
-                    <span className="text-sm text-secondary">
-                      {(index + 1).toString()}
-                    </span>
-                  </div>
-                  <h3 className="text-sm text-secondary ml-4 flex items-center gap-1">
-                    <Link target="_blank" href={app.href}>
-                      {app.name}
-                    </Link>
-                    <ArrowUpRight className="size-4" />
-                  </h3>
+            {/* Mobile: stacked simple list */}
+            <div className="md:hidden space-y-4">
+              {commands.map(({ cmd, desc }) => (
+                <div
+                  key={cmd}
+                  className="border border-gray-300 dark:border-gray-700 rounded-md p-4 bg-gray-50 dark:bg-gray-900"
+                >
+                  <p className="font-mono text-indigo-600 dark:text-indigo-400 text-sm mb-1">
+                    <code>{cmd}</code>
+                  </p>
+                  <p className="text-sm text-gray-800 dark:text-gray-300">{desc}</p>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
+              ))}
+            </div>
+          </section>
+        ))}
+
+        <p className="mt-8 text-muted-foreground">
+          I keep coming back to these commands during development. If you're ever lost,{' '}
+          <span className="italic">
+            run <code>git status</code>
+          </span>{' '}
+          — it's your best friend!
+        </p>
       </div>
     </Container>
   );
