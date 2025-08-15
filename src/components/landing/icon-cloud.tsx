@@ -7,15 +7,14 @@ const slugs = [
   "typescript",
   "javascript",
   "c++",
-  "java",
+  "MongoDB",
   "react",
   "html5",
-  "css3",
+  "css",
   "nodedotjs",
   "express",
   "nextdotjs",
   "prisma",
-  "amazonaws",
   "postgresql",
   "firebase",
   "nginx",
@@ -23,11 +22,11 @@ const slugs = [
   "testinglibrary",
   "jest",
   "docker",
+  "perplexity",
   "git",
   "jira",
   "github",
   "gitlab",
-  "visualstudiocode",
   "figma",
 ];
 
@@ -35,11 +34,11 @@ export default function Icon() {
   const images = slugs.map((slug) => `https://cdn.simpleicons.org/${slug}/${slug}`);
 
   return (
-    <Container className="mt-5 ">
+    <Container className="mt-15">
       <SectionHeading subHeading="" heading="Toolkit" />
       
       {/* Icon Cloud */}
-      <div className="mt-0 relative flex w-full items-center justify-center overflow-hidden">
+      <div className="relative  flex w-full items-center justify-center overflow-hidden py-2">
         <IconCloud images={images} />
       </div>
     </Container>

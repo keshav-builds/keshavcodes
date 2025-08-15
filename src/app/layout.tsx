@@ -33,7 +33,7 @@ export default function RootLayout({
                 <Navbar />
                 {children}
                 <Quote />
-                <Footer />
+                {/* <Footer /> */}
               </div>
               <BackToTop />
               <UmamiAnalytics />

@@ -67,18 +67,18 @@ export default function ThemeSwitch({ className }: ThemeSwitchProps) {
     <button
       onClick={toggleTheme}
       disabled={isAnimating}
-      className={`relative flex h-8 w-8 items-center justify-center overflow-hidden transition-opacity hover:opacity-80 ${className} hover:cursor-pointer z-50`}
+      className={`relative flex h-8 w-8 items-center justify-center overflow-hidden transition-opacity hover:opacity-80 ${className} hover:cursor-pointer hover:text-blue-500 z-50`}
       aria-label="Toggle theme"
     >
       <Sun
-        className={`absolute h-5 w-5 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+        className={`absolute h-6 w-6 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
           resolvedTheme === 'dark'
             ? 'translate-y-0 scale-100 opacity-100'
             : 'translate-y-5 scale-50 opacity-0'
         }`}
       />
       <Moon
-        className={`absolute h-5 w-5 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+        className={`absolute h-6 w-6 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
           resolvedTheme === 'light'
             ? 'translate-y-0 scale-100 opacity-100'
             : 'translate-y-5 scale-50 opacity-0'

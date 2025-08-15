@@ -1,10 +1,10 @@
 import Container from '@/components/common/Container';
-import Icon from '@/components/landing/icon-cloud';
 import Blog from '@/components/landing/Blog';
 import Experience from '@/components/landing/Experience';
 import Hero from '@/components/landing/Hero';
 import Work from '@/components/landing/Projects';
 import Setup from '@/components/landing/Setup';
+import Icon from '@/components/landing/icon-cloud';
 import React from 'react';
 
 export default function page() {
@@ -13,11 +13,9 @@ export default function page() {
       <Hero />
       <Work />
       {/* <Experience /> */}
-      
       <Blog />
-       <Icon />
+      <Icon />
       <Setup />
-     
     </Container>
   );
 }

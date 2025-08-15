@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <Container
-      className="sticky top-0 z-20 rounded-md py-4 "
+      className="sticky top-0 z-20 rounded-md py-3 backdrop-blur-xs"
     >
       <div className="flex items-center justify-between px-4 sm:px-6">
         {/* Left: Logo */}

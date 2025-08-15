@@ -1,11 +1,10 @@
-import { heroConfig, skillComponents, socialLinks } from '@/config/Hero';
-import { parseTemplate } from '@/lib/hero';
+import { heroConfig, socialLinks } from '@/config/Hero';
 import { Link } from 'next-view-transitions';
 import Image from 'next/image';
 import React from 'react';
-import { TextGenerateEffect } from "../ui/text-generate-effect";
+import { AuroraText } from "@/components/ui/aura-text";
+import { Highlighter } from "@/components/ui/highlight";
 import Container from '../common/Container';
-import Skill from '../common/Skill';
 import CV from '../svgs/CV';
 import Chat from '../svgs/Chat';
 import { Button } from '../ui/button';
@@ -17,36 +16,7 @@ const buttonIcons = {
 };
 
 export default function Hero() {
-  const { name, title, avatar, skills, description, buttons } = heroConfig;
-
-  const renderDescription = () => {
-    const parts = parseTemplate(description.template, skills);
-
-    return parts.map((part) => {
-      if (part.type === 'skill' && 'skill' in part && part.skill) {
-        const SkillComponent =
-          skillComponents[part.skill.component as keyof typeof skillComponents];
-        return (
-          <Skill key={part.key} name={part.skill.name} href={part.skill.href}>
-            <SkillComponent />
-          </Skill>
-        );
-      } else if (part.type === 'bold' && 'text' in part) {
-        return (
-          <b key={part.key} className="whitespace-pre-wrap text-primary">
-            {part.text}
-          </b>
-        );
-      } else if (part.type === 'text' && 'text' in part) {
-        return (
-          <span key={part.key} className="whitespace-pre-wrap">
-            {part.text}
-          </span>
-        );
-      }
-      return null;
-    });
-  };
+  const { name, avatar, buttons } = heroConfig;
 
   return (
     <Container className="mx-auto max-w-5xl">
@@ -56,29 +26,39 @@ export default function Hero() {
         alt="hero"
         width={150}
         height={180}
-        className="size-24 rounded-full dark:bg-yellow-300 bg-blue-300"
+        className="size-25 rounded-full bg-[#3A83F5] "
       />
 
       {/* Text Area */}
       <div className="mt-8 flex flex-col gap-2">
-      <h1 className="text-4xl font-bold">
-  Hi, I&apos;m {name}{" "}
-   <span className="inline-block animate-wave origin-bottom-right">👋</span>{" "}
-  <span className="text-secondary inline-block align-baseline">
-    <TextGenerateEffect words={title} />
-  </span>
-</h1>
+        <h1 className="text-4xl font-bold">
+          Hi, I&apos;m <AuroraText>{name}</AuroraText>{" "}
+          <span className="inline-block animate-wave origin-bottom-right">👋🏻</span>
+        </h1>
+        {/*  Description */}
+        <div className="mt-1 ">
+       {/* <TextGenerateEffect words="I'm a full stack web developer, passionate about crafting responsive, user-friendly web applications with the MERN stack and beyond. Skilled in React, JavaScript, UI/UX design, and open to exciting new opportunities in any technology." /> */}
+      <p className="mt-2 text-base md:text-lg leading-relaxed   max-w-3xl mx-auto ">
+  I'm a{" "}
+  <span className="text-blue-400 font-semibold">Full Stack Web Developer</span>{" "}
+  passionate about crafting responsive, user-friendly web applications with the MERN stack and beyond. Skilled in React, JavaScript, UI/UX design.{" "}
+  <Highlighter
+   
+    action="underline"
+    color="#60A5FA"
+    
+  >
+    Open to any tech opportunities
+  </Highlighter>
+</p>
 
-        <div className="mt-4 flex flex-wrap items-center gap-x-1.5 gap-y-2 text-base md:text-lg text-neutral-500 whitespace-pre-wrap">
-          {renderDescription()}
         </div>
       </div>
 
       {/* Buttons */}
       <div className="mt-8 flex gap-4">
         {buttons.map((button, index) => {
-          const IconComponent =
-            buttonIcons[button.icon as keyof typeof buttonIcons];
+          const IconComponent = buttonIcons[button.icon as keyof typeof buttonIcons];
           return (
             <Button
               key={index}
@@ -98,7 +78,6 @@ export default function Hero() {
             <TooltipTrigger asChild>
               <Link
                 href={link.href}
-                key={link.name}
                 className="text-secondary flex items-center gap-2"
               >
                 <span className="size-6">{link.icon}</span>
