@@ -6,7 +6,7 @@ import React from 'react';
 import { gitCommands } from '@/config/GitCheatsheet';
 
 export const metadata: Metadata = {
-  ...getMetadata('/gears'),
+  ...getMetadata('/git-sheet'),
   robots: {
     index: true,
     follow: true,

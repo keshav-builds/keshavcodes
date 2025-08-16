@@ -3,8 +3,8 @@ import { Link } from 'next-view-transitions';
 import React from 'react';
 import Container from '../common/Container';
 import SectionHeading from '../common/SectionHeading';
-import Git from '../svgs/git';        // Make sure you have a Git or Github icon component
-import Database from '../svgs/database'; // And a Database/DB icon component
+import Git from '../svgs/git';       
+import Database from '../svgs/database'; 
 import { Card } from '../ui/card';
 
 const setup = [
@@ -12,17 +12,17 @@ const setup = [
     name: 'Git Essentials',
     description: 'A handpicked collection of practical Git commands you’ll need for daily coding',
     icon: <Git className="size-4" />,
-    href: '/gears',
+    href: '/git-sheet',
   },
   {
     name: 'SQL Essentials',
     description: 'Useful SQL queries and patterns',
     icon: <Database className="size-4" />,
-    href: '/setup',
+    href: '/sql-sheet',
   },
 ];
 
-export default function Setup() {
+export default function Cheatsheets() {
   return (
     <Container className="mt-10">
       <SectionHeading subHeading="Quick " heading="Commands" />

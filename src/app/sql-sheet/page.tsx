@@ -6,7 +6,7 @@ import React from 'react';
 import { sqlCommands } from '@/config/SqlCheatsheet';
 
 export const metadata: Metadata = {
-  ...getMetadata('/setup'),
+  ...getMetadata('/sql-sheet'),
   robots: {
     index: true,
     follow: true,
