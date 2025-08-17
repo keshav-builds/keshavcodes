@@ -19,8 +19,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'i.postimg.cc',
       },
+      
     ],
   },
+  
 };
 
 export default nextConfig;

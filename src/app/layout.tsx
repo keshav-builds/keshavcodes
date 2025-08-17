@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <ViewTransitions>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning >
         <body className="relative font-hanken-grotesk antialiased">
           <Providers>
             <ReactLenis root>
