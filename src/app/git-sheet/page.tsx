@@ -83,11 +83,11 @@ export default function GearsPage() {
         ))}
 
         <p className="mt-8 text-muted-foreground">
-          I keep coming back to these commands during development. If you're ever lost,{' '}
+          I keep coming back to these commands during development. If you&apos;re ever lost,{' '}
           <span className="italic">
             run <code>git status</code>
           </span>{' '}
-          — it's your best friend!
+          — it&apos;s your best friend!
         </p>
       </div>
     </Container>

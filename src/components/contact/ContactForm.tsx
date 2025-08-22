@@ -92,7 +92,7 @@ export default function ContactForm() {
   return (
     <Card className="bg-white/70 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200 dark:border-gray-700 shadow-md rounded-2xl">
       <CardHeader>
-        <CardTitle className="text-xl font-bold">Let's Connect</CardTitle>
+        <CardTitle className="text-xl font-bold">Let&apos;s Connect</CardTitle>
         <CardDescription>
           Fill out the form below and I will get back to you as soon as
           possible.

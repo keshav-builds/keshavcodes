@@ -34,7 +34,34 @@ export const heroConfig = {
   name: 'Keshav',
   title: 'A Full Stack web developer.',
   avatar: '/assets/logo.png',
-
+// Skills Configuration
+  skills: [
+    {
+      name: 'Typescript',
+      href: 'https://www.typescriptlang.org/',
+      component: 'TypeScript',
+    },
+    {
+      name: 'React',
+      href: 'https://react.dev/',
+      component: 'ReactIcon',
+    },
+    {
+      name: 'Next.js',
+      href: 'https://nextjs.org/',
+      component: 'NextJs',
+    },
+    {
+      name: 'Bun',
+      href: 'https://bun.sh/',
+      component: 'Bun',
+    },
+    {
+      name: 'PostgreSQL',
+      href: 'https://www.postgresql.org/',
+      component: 'PostgreSQL',
+    },
+  ],
 
   // Description Configuration
   description: {

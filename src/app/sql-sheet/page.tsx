@@ -82,7 +82,7 @@ export default function SqlCheatsheetPage() {
         ))}
 
         <p className="mt-8 text-muted-foreground">
-          Use this cheatsheet regularly during your SQL journey — it’s packed with practical examples  you'll meet in real projects and interviews!
+          Use this cheatsheet regularly during your SQL journey — it&apos;s packed with practical examples  you&apos;ll meet in real projects and interviews!
         </p>
       </div>
     </Container>

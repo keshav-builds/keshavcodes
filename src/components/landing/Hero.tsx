@@ -39,7 +39,7 @@ export default function Hero() {
         <div className="mt-1 ">
        {/* <TextGenerateEffect words="I'm a full stack web developer, passionate about crafting responsive, user-friendly web applications with the MERN stack and beyond. Skilled in React, JavaScript, UI/UX design, and open to exciting new opportunities in any technology." /> */}
       <p className="mt-2 text-base md:text-lg leading-relaxed   max-w-3xl mx-auto ">
-  I'm a{" "}
+  I&apos;m a{" "}
   <span className="text-blue-400 font-semibold">Full Stack Web Developer</span>{" "}
   passionate about crafting responsive, user-friendly web applications with the MERN stack and beyond. Skilled in React, JavaScript, UI/UX design.{" "}
   <Highlighter

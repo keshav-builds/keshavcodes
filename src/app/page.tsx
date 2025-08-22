@@ -1,6 +1,5 @@
 import Container from '@/components/common/Container';
 import Blog from '@/components/landing/Blog';
-import Experience from '@/components/landing/Experience';
 import Hero from '@/components/landing/Hero';
 import Work from '@/components/landing/Projects';
 import Cheatsheets from '@/components/landing/Cheatsheets';
