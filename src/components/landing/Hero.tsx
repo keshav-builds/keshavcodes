@@ -80,7 +80,7 @@ export default function Hero() {
                 href={link.href}
                 className="text-secondary flex items-center gap-2"
               >
-                <span className="size-6">{link.icon}</span>
+                <span className="size-7">{link.icon}</span>
               </Link>
             </TooltipTrigger>
             <TooltipContent>

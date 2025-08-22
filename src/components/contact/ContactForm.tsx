@@ -34,14 +34,7 @@ const contactFormSchema = z.object({
   email: z.string().email({
     message: 'Please enter a valid email address.',
   }),
-  phone: z
-    .string()
-    .min(10, {
-      message: 'Phone number must be at least 10 characters.',
-    })
-    .regex(/^[\+]?[1-9][\d]{0,15}$/, {
-      message: 'Please enter a valid phone number.',
-    }),
+ 
   message: z
     .string()
     .min(10, {
@@ -62,7 +55,6 @@ export default function ContactForm() {
     defaultValues: {
       name: '',
       email: '',
-      phone: '',
       message: '',
     },
   });
@@ -98,9 +90,9 @@ export default function ContactForm() {
   };
 
   return (
-    <Card className="border-none shadow-none bg-transparent">
+    <Card className="bg-white/70 dark:bg-gray-900/60 backdrop-blur-md border border-gray-200 dark:border-gray-700 shadow-md rounded-2xl">
       <CardHeader>
-        <CardTitle>Send me a message</CardTitle>
+        <CardTitle className="text-xl font-bold">Let's Connect</CardTitle>
         <CardDescription>
           Fill out the form below and I will get back to you as soon as
           possible.
@@ -109,7 +101,7 @@ export default function ContactForm() {
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            
               <FormField
                 control={form.control}
                 name="name"
@@ -123,20 +115,8 @@ export default function ContactForm() {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Phone *</FormLabel>
-                    <FormControl>
-                      <Input placeholder="+1 (123) xxx-xxxx" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
+            
+          
 
             <FormField
               control={form.control}
@@ -164,7 +144,7 @@ export default function ContactForm() {
                   <FormLabel>Message *</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Tell me about your project or just say hello..."
+                      placeholder="Write your message here..."
                       className="min-h-[120px] resize-none"
                       {...field}
                     />
@@ -174,7 +154,7 @@ export default function ContactForm() {
               )}
             />
 
-            <Button type="submit" className="w-fit" disabled={isSubmitting}>
+            <Button type="submit" className="w-fit cursor-pointer" disabled={isSubmitting}>
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />

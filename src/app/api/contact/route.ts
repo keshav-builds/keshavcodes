@@ -10,9 +10,8 @@ const RATE_LIMIT_MAX_REQUESTS = 5;
 const contactSchema = z.object({
   name: z.string().min(2).max(100).trim(),
   email: z.string().email().trim(),
-  phone: z.string().min(10).max(20).regex(/^[\d\s\-\+\(\)]+$/).trim(),
   message: z.string().min(10).max(1000).trim(),
-  // token: z.string().optional() // Optional: for CAPTCHA or honeypot
+
 });
 
 function getClientIP(request: NextRequest): string {
@@ -53,7 +52,6 @@ function checkRateLimit(clientIP: string) {
 async function sendEmail(data: {
   name: string;
   email: string;
-  phone: string;
   message: string;
 }) {
   const transporter = nodemailer.createTransport({
@@ -72,18 +70,14 @@ async function sendEmail(data: {
     subject: 'New Contact Form Submission',
     replyTo: data.email,
     text: `
-New Contact Form Submission
 
 Name: ${data.name}
 Email: ${data.email}
-Phone: ${data.phone}
 
 Message:
 ${data.message}
 
 Submitted: ${new Date().toISOString()}
-IP: (hidden for privacy)
-Timezone: ${Intl.DateTimeFormat().resolvedOptions().timeZone}
     `.trim(),
   };
 
@@ -128,7 +122,7 @@ export async function POST(request: NextRequest) {
 
     const validatedData = contactSchema.parse(body);
 
-    // [OPTIONAL] Add CAPTCHA or honeypot check here
+    //  Add CAPTCHA or honeypot check here later
 
     const emailSent = await sendEmail(validatedData);
 

@@ -1,6 +1,7 @@
 import UmamiAnalytics from '@/components/analytics/UmamiAnalytics';
 import BackToTop from '@/components/common/BackToTop';
 // import Footer from '@/components/common/Footer';
+import { Toaster } from 'sonner';
 import Navbar from '@/components/common/Navbar';
 import Providers from '@/components/common/Providers';
 import { Quote } from '@/components/common/Quote';
@@ -29,6 +30,7 @@ export default function RootLayout({
                 <GridBackgroundDemo />
               </div>
               <Navbar />
+               <Toaster position="top-right" />
               {children}
               <Quote />
               {/* <Footer /> dont want this now*/}
