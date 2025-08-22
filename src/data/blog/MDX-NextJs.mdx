@@ -1,0 +1,160 @@
+---
+title: 'Getting Started with MDX in Next.js'
+description: 'A beginner-friendly guide on how to set up and use MDX in your Next.js app.'
+image: '/blog/MDX_cover.png'
+tags: ['MDX', 'development', 'design']
+date: '2025-02-22'
+isPublished: true
+---
+
+# Getting Started with MDX in Next.js
+
+Have you ever wanted to write blog posts where you can **mix Markdown with React components**? 🎉  
+That’s exactly what **MDX** allows you to do! It feels like magic when your Markdown content can include buttons, charts, or even custom components seamlessly.
+
+In this guide, we’ll go step by step through setting up **MDX in Next.js**. By the end, you’ll be able to create blogs (or any content pages) that combine Markdown simplicity with React flexibility.
+
+## What is MDX?
+
+**MDX** stands for **Markdown + JSX**.  
+It lets you write Markdown like normal (`# headings`, `- lists`, `**bold text**`), but whenever you need, you can drop in React components directly.
+
+## Step 1: Install Dependencies
+
+First, install the main MDX packages:
+
+```bash
+npm install next-mdx-remote gray-matter remark-gfm rehype-prism-plus
+```
+
+- **next-mdx-remote** → allows MDX rendering in Next.js pages
+- **gray-matter** → lets you use frontmatter (metadata at the top of your files)
+- **remark-gfm** → adds GitHub-flavored markdown (tables, checklists, etc.)
+- **rehype-prism-plus** → enables code syntax highlighting
+
+## Step 2: Create a Blog Content Folder
+
+Inside your project, create a `posts` folder to keep MDX files:
+
+```bash
+/posts
+hello-world.mdx
+```
+
+Sample `hello-world.mdx` file:
+
+```javascript
+# Hello World 👋
+
+This is an **MDX template**. You can write Markdown normally, and also embed React components.
+
+- Write Markdown lists
+- Add images, code blocks, etc.
+- Mix UI with text
+
+## Example Component
+
+<Counter />
+```
+
+Notice we added Counter . That’s a React component we’ll make next.
+
+## Step 3: Configure an MDX Page in Next.js
+
+Now, in your pages/blog/[slug].tsx, add this code:
+
+```javascript
+import fs from 'fs';
+import matter from 'gray-matter';
+import { MDXRemote } from 'next-mdx-remote';
+import { serialize } from 'next-mdx-remote/serialize';
+import path from 'path';
+import rehypePrism from 'rehype-prism-plus';
+import remarkGfm from 'remark-gfm';
+
+import Counter from '../../components/Counter';
+
+const components = { Counter };
+
+export default function BlogPage({ source, frontMatter }) {
+  return (
+    <article className="prose mx-auto">
+      <h1>{frontMatter.title}</h1>
+      <MDXRemote {...source} components={components} />
+    </article>
+  );
+}
+
+export async function getStaticPaths() {
+  const files = fs.readdirSync(path.join('posts'));
+  const paths = files.map((filename) => ({
+    params: { slug: filename.replace('.mdx', '') },
+  }));
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params: { slug } }) {
+  const filePath = path.join('posts', slug + '.mdx');
+  const source = fs.readFileSync(filePath);
+
+  const { content, data } = matter(source);
+
+  const mdxSource = await serialize(content, {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [rehypePrism],
+    },
+  });
+
+  return {
+    props: {
+      source: mdxSource,
+      frontMatter: data,
+    },
+  };
+}
+```
+
+## Step 4: Create a Component to Use in MDX
+
+Inside components/Counter.tsx:
+
+```javascript
+import { useState } from "react";
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <button
+      className="px-4 py-2 bg-blue-500 text-white rounded"
+      onClick={() => setCount(count + 1)}
+    >
+      You clicked {count} times
+    </button>
+  );
+}
+```
+Now, when you visit /blog/hello-world,
+you’ll see your formatted post plus a real React counter working inside Markdown! 🔥
+
+## Final Thoughts
+
+MDX is powerful because it gives you the **best of both worlds**:
+
+- ✍️ Easy writing with Markdown  
+- ⚛️ Interactive UI with React  
+
+If you’re planning to build a **developer blog, documentation site, or content-heavy project**,  
+MDX + Next.js is a perfect combo.  
+
+👉 Try experimenting by adding your own custom components like:  
+
+- ✅ Alert boxes  
+- 📊 Charts  
+- 🎥 Embeds (YouTube, Tweets, etc.)  
+
+---
+
+With MDX, your content becomes **not just static text, but interactive and engaging** 🚀
