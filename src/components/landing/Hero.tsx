@@ -1,9 +1,10 @@
+import { AuroraText } from '@/components/ui/aura-text';
+import { Highlighter } from '@/components/ui/highlight';
 import { heroConfig, socialLinks } from '@/config/Hero';
 import { Link } from 'next-view-transitions';
 import Image from 'next/image';
 import React from 'react';
-import { AuroraText } from "@/components/ui/aura-text";
-import { Highlighter } from "@/components/ui/highlight";
+
 import Container from '../common/Container';
 import CV from '../svgs/CV';
 import Chat from '../svgs/Chat';
@@ -32,33 +33,34 @@ export default function Hero() {
       {/* Text Area */}
       <div className="mt-8 flex flex-col gap-2">
         <h1 className="text-4xl font-bold">
-          Hi, I&apos;m <AuroraText>{name}</AuroraText>{" "}
-          <span className="inline-block animate-wave origin-bottom-right">👋🏻</span>
+          Hi, I&apos;m <AuroraText>{name}</AuroraText>{' '}
+          <span className="inline-block animate-wave origin-bottom-right">
+            👋🏻
+          </span>
         </h1>
         {/*  Description */}
         <div className="mt-1 ">
-       {/* <TextGenerateEffect words="I'm a full stack web developer, passionate about crafting responsive, user-friendly web applications with the MERN stack and beyond. Skilled in React, JavaScript, UI/UX design, and open to exciting new opportunities in any technology." /> */}
-      <p className="mt-2 text-base md:text-lg leading-relaxed   max-w-3xl mx-auto ">
-  I&apos;m a{" "}
-  <span className="text-blue-400 font-semibold">Full Stack Web Developer</span>{" "}
-  passionate about crafting responsive, user-friendly web applications with the MERN stack and beyond. Skilled in React, JavaScript, UI/UX design.{" "}
-  <Highlighter
-   
-    action="underline"
-    color="#60A5FA"
-    
-  >
-    Open to any tech opportunities
-  </Highlighter>
-</p>
-
+          {/* <TextGenerateEffect words="I'm a full stack web developer, passionate about crafting responsive, user-friendly web applications with the MERN stack and beyond. Skilled in React, JavaScript, UI/UX design, and open to exciting new opportunities in any technology." /> */}
+          <p className="mt-2 text-base md:text-lg leading-relaxed   max-w-3xl mx-auto ">
+            I&apos;m a{' '}
+            <span className="text-blue-400 font-semibold">
+              Full Stack Web Developer
+            </span>{' '}
+            passionate about crafting responsive, user-friendly web applications
+            with the MERN stack and beyond. Skilled in React, JavaScript, UI/UX
+            design.{' '}
+            <Highlighter action="underline" color="#60A5FA">
+              Open to any tech opportunities
+            </Highlighter>
+          </p>
         </div>
       </div>
 
       {/* Buttons */}
       <div className="mt-8 flex gap-4">
         {buttons.map((button, index) => {
-          const IconComponent = buttonIcons[button.icon as keyof typeof buttonIcons];
+          const IconComponent =
+            buttonIcons[button.icon as keyof typeof buttonIcons];
           return (
             <Button
               key={index}
@@ -78,6 +80,8 @@ export default function Hero() {
             <TooltipTrigger asChild>
               <Link
                 href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-secondary flex items-center gap-2"
               >
                 <span className="size-7">{link.icon}</span>
