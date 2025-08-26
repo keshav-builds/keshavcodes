@@ -27,7 +27,7 @@ export function BlogCard({ post }: BlogCardProps) {
   });
 
   return (
-    <Card className="group h-full w-full overflow-hidden transition-all p-0 border-gray-100 dark:border-gray-800 shadow-none">
+    <Card className="group h-full w-full overflow-hidden transition-all p-0 border-gray-100 dark:border-gray-800 shadow-lg">
       <CardHeader className="p-0">
         <div className="relative aspect-video overflow-hidden">
           <Link href={`/blog/${slug}`}>
@@ -68,7 +68,7 @@ export function BlogCard({ post }: BlogCardProps) {
             </time>
             <Link
               href={`/blog/${slug}`}
-              className="flex items-center justify-end gap-2 hover:underline underline-offset-4 text-secondary"
+              className="font-semibold text-blue-500 dark:text-blue-400 flex items-center gap-2 text-sm transition-colors duration-300 hover:underline underline-offset-4"
             >
               Read More <ArrowRight className="size-4" />
             </Link>

@@ -67,7 +67,7 @@ export const projects: Project[] = [
   {
     title: 'AutoSuggestion Kit',
     description:
-      'A powerful, lightweight, and customizable React autosuggestion/autocomplete component available as an npm package.',
+      'A lightweight, and customizable React autosuggestion component available as an npm package.',
     image: '/project/npm-kit.png',
     video: 'https://ik.imagekit.io/jzry83ljs/npm_video.mp4',
     link: 'https://github.com/keshav-builds/autosuggestion-kit/blob/main/README.md',
