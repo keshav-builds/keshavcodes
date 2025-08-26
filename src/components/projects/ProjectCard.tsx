@@ -31,7 +31,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const [dialogOpen, setDialogOpen] = useState<boolean>(false);
 
   return (
-    <Card className="group h-full w-full overflow-hidden transition-all p-0 border-gray-100 dark:border-gray-800 shadow-none">
+    <Card className="group h-full w-full overflow-hidden transition-all p-0  border-gray-100 dark:border-gray-800 shadow-lg">
       <CardHeader className="p-0">
         <div className="group relative aspect-video overflow-hidden">
           <Image
@@ -157,9 +157,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </div>
           <Link
             href={project.projectDetailsPageSlug}
-            className="text-secondary flex items-center gap-2 text-sm hover:underline underline-offset-4 hover:text-primary transition-colors"
+            className="font-semibold text-blue-500 dark:text-blue-400 flex items-center gap-2 text-sm transition-colors duration-300 hover:underline underline-offset-4 hover:text-indigo-800 dark:hover:text-indigo-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded"
           >
-            View Details <ArrowRight className="size-4" />
+            View Details <ArrowRight className="w-4 h-4" />
           </Link>
         </CardFooter>
       )}

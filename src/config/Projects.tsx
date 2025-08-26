@@ -1,4 +1,3 @@
-import Appwrite from '@/components/technologies/Appwrite';
 import Bun from '@/components/technologies/Bun';
 import ExpressJs from '@/components/technologies/ExpressJs';
 import Github from '@/components/technologies/Github';
@@ -7,6 +6,7 @@ import MongoDB from '@/components/technologies/MongoDB';
 import Motion from '@/components/technologies/Motion';
 import Netlify from '@/components/technologies/Netlify';
 import NextJs from '@/components/technologies/NextJs';
+import NpmIcon from '@/components/technologies/NpmIcon';
 import NodeJs from '@/components/technologies/NodeJs';
 import PostgreSQL from '@/components/technologies/PostgreSQL';
 import Prisma from '@/components/technologies/Prisma';
@@ -45,44 +45,42 @@ export const projects: Project[] = [
     isWorking: true,
   },
   {
-    title: 'Appwrite MCP Server',
+    title: 'Graphit',
     description:
-      'Model Context Protocol server for seamless Appwrite database operations with 7 powerful tools and 99.9% success rate',
-    image: '/project/appwrite.png',
-    video: 'https://ik.imagekit.io/hokb3mrdr/appwrite.mp4',
-    link: 'https://mcp.ramx.in/',
+      'A dynamic platform for uploading and analyzing CSV or JSON datasets with seamless chart visualizations.',
+    image: '/project/graphit.png',
+    video: 'https://ik.imagekit.io/jzry83ljs/graphit_video.mp4',
+    link: 'https://graphit-eta.vercel.app/',
     technologies: [
       { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
-      { name: 'Bun', icon: <Bun key="bun" /> },
+      { name: 'React', icon: <ReactIcon key="react" /> },
+      { name: 'Tailwind CSS', icon: <TailwindCss key="tailwindcss" />},
       { name: 'Vercel', icon: <Vercel key="vercel" /> },
-      { name: 'Appwrite', icon: <Appwrite key="appwrite" /> },
+      { name: 'Next.js', icon: <NextJs key="nextjs" /> },
     ],
-    github: 'https://github.com/ramxcodes/mcp-server',
-    live: 'https://mcp.ramx.in/',
+    github: 'https://github.com/keshav-builds/Graphit',
+    live: 'https://graphit-eta.vercel.app/',
     details: true,
-    projectDetailsPageSlug: '/projects/appwrite-mcp-server',
+    projectDetailsPageSlug: '/projects/graphit',
     isWorking: true,
   },
   {
-    title: 'Syncify',
+    title: 'AutoSuggestion Kit',
     description:
-      'Real-time music streaming platform with synchronized playback, live chat, and social listening features',
-    image: '/project/syncify.png',
-    video: 'https://ik.imagekit.io/hokb3mrdr/syncify.mp4',
-    link: 'https://syncify.rocks',
+      'A powerful, lightweight, and customizable React autosuggestion/autocomplete component available as an npm package.',
+    image: '/project/npm-kit.png',
+    video: 'https://ik.imagekit.io/jzry83ljs/npm_video.mp4',
+    link: 'https://github.com/keshav-builds/autosuggestion-kit/blob/main/README.md',
     technologies: [
       { name: 'React', icon: <ReactIcon key="react" /> },
-      { name: 'Node.js', icon: <NodeJs key="nodejs" /> },
-      { name: 'MongoDB', icon: <MongoDB key="mongodb" /> },
+      { name: 'npm', icon: <NpmIcon key="npm" /> },
       { name: 'Vercel', icon: <Vercel key="vercel" /> },
       { name: 'Tailwind CSS', icon: <TailwindCss key="tailwindcss" /> },
       { name: 'shadcn/ui', icon: <Shadcn key="shadcn" /> },
-      { name: 'Socket.io', icon: <SocketIo key="socketio" /> },
     ],
-    github: 'https://github.com/ramxcodes/syncify',
-    live: 'https://syncify.rocks',
+    github: 'https://github.com/keshav-builds/autosuggestion-kit',
     details: true,
-    projectDetailsPageSlug: '/projects/syncify',
+    projectDetailsPageSlug: '/projects/npm-kit',
     isWorking: true,
   },
   {
