@@ -5,7 +5,7 @@ import { Toaster } from 'sonner';
 import Navbar from '@/components/common/Navbar';
 import Providers from '@/components/common/Providers';
 import { Quote } from '@/components/common/Quote';
-import GridBackgroundDemo from '@/components/common/gridBackgroundDemo';
+import GradientBackground from '@/components/common/GradientBackground';
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import ReactLenis from 'lenis/react';
 import { ViewTransitions } from 'next-view-transitions';
@@ -26,8 +26,8 @@ export default function RootLayout({
           <Providers>
             <ReactLenis root>
               {/* Background grid positioned absolutely behind */}
-              <div className="fixed inset-0 -z-10">
-                <GridBackgroundDemo />
+              <div className="fixed inset-0 -z-10 min-h-full">
+                <GradientBackground />
               </div>
               <Navbar />
                <Toaster position="top-right" />

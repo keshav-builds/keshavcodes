@@ -23,7 +23,7 @@ export function BlogContent({ frontmatter, content }: BlogContentProps) {
   });
 
   return (
-   <article className="mx-auto max-w-4xl bg-gradient-to-tr from-white via-slate-100 to-white dark:from-slate-900 dark:via-black dark:to-slate-900 rounded-xl shadow-lg p-2 sm:p-6 transition-colors">
+   <article className="mx-auto max-w-4xl  rounded-xl shadow-lg p-2 sm:p-6 transition-colors">
   <header className="mb-8 space-y-6">
     <div className="relative aspect-video overflow-hidden rounded-2xl shadow-lg">
       <Image

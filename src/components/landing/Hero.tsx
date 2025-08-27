@@ -1,9 +1,11 @@
+"use client";
 import { AuroraText } from '@/components/ui/aura-text';
 import { Highlighter } from '@/components/ui/highlight';
 import { heroConfig, socialLinks } from '@/config/Hero';
 import { Link } from 'next-view-transitions';
 import Image from 'next/image';
 import React from 'react';
+import { toast } from "sonner";
 
 import Container from '../common/Container';
 import CV from '../svgs/CV';
@@ -18,6 +20,27 @@ const buttonIcons = {
 
 export default function Hero() {
   const { name, avatar, buttons } = heroConfig;
+
+  // Function to copy email
+const copyToClipboard = async () => {
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText("developerkeshav200@gmail.com");
+      toast.success("Email copied to clipboard!");
+    } else {
+      //fallback
+      const textArea = document.createElement("textarea");
+      textArea.value = "developerkeshav200@gmail.com";
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+      toast.success("Email copied to clipboard!");
+    }
+  } catch {
+    toast.error("Failed to copy email");
+  }
+};
 
   return (
     <Container className="mx-auto max-w-5xl">
@@ -43,7 +66,7 @@ export default function Hero() {
           {/* <TextGenerateEffect words="I'm a full stack web developer, passionate about crafting responsive, user-friendly web applications with the MERN stack and beyond. Skilled in React, JavaScript, UI/UX design, and open to exciting new opportunities in any technology." /> */}
           <p className="mt-2 text-base md:text-lg leading-relaxed   max-w-3xl mx-auto ">
             I&apos;m a{' '}
-            <span className="text-blue-400 font-semibold">
+            <span className="text-blue-500 dark:text-blue-400 font-semibold">
               Full Stack Web Developer
             </span>{' '}
             passionate about crafting responsive, user-friendly web applications
@@ -78,14 +101,23 @@ export default function Hero() {
         {socialLinks.map((link) => (
           <Tooltip key={link.name} delayDuration={0}>
             <TooltipTrigger asChild>
-              <Link
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-secondary flex items-center gap-2"
-              >
-                <span className="size-7">{link.icon}</span>
-              </Link>
+              {link.name === 'Email' ? (
+                <button
+                  onClick={() => copyToClipboard()}
+                  className="text-secondary flex items-center gap-2 cursor-pointer"
+                >
+                  <span className="size-7">{link.icon}</span>
+                </button>
+              ) : (
+                <Link
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-secondary flex items-center gap-2"
+                >
+                  <span className="size-7">{link.icon}</span>
+                </Link>
+              )}
             </TooltipTrigger>
             <TooltipContent>
               <p>{link.name}</p>
