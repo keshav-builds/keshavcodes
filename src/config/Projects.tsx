@@ -6,8 +6,8 @@ import MongoDB from '@/components/technologies/MongoDB';
 import Motion from '@/components/technologies/Motion';
 import Netlify from '@/components/technologies/Netlify';
 import NextJs from '@/components/technologies/NextJs';
-import NpmIcon from '@/components/technologies/NpmIcon';
 import NodeJs from '@/components/technologies/NodeJs';
+import NpmIcon from '@/components/technologies/NpmIcon';
 import PostgreSQL from '@/components/technologies/PostgreSQL';
 import Prisma from '@/components/technologies/Prisma';
 import ReactIcon from '@/components/technologies/ReactIcon';
@@ -45,6 +45,25 @@ export const projects: Project[] = [
     isWorking: true,
   },
   {
+    title: 'FocusBolt',
+    description:
+      'Smart Pomodoro timer with ambient music, notifications, and beautiful themes - Beta testing in progress',
+    image: '/project/focus-bolt.png',
+    video:
+      'https://ik.imagekit.io/jzry83ljs/focusbolt_demovideo.mp4?updatedAt=1759599474035',
+    link: 'https://focusbolt.vercel.app/',
+    technologies: [
+      { name: 'Next.js', icon: <NextJs key="nextjs" /> },
+      { name: 'React', icon: <ReactIcon key="react" /> },
+      { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
+      { name: 'Tailwind CSS', icon: <TailwindCss key="tailwindcss" /> },
+    ],
+    live: 'https://focusbolt.vercel.app/',
+    details: true,
+    projectDetailsPageSlug: '/projects/focusbolt',
+    isWorking: true, // Beta version - actively maintained
+  },
+  {
     title: 'Graphit',
     description:
       'A dynamic platform for uploading and analyzing CSV or JSON datasets with seamless chart visualizations.',
@@ -54,7 +73,7 @@ export const projects: Project[] = [
     technologies: [
       { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
       { name: 'React', icon: <ReactIcon key="react" /> },
-      { name: 'Tailwind CSS', icon: <TailwindCss key="tailwindcss" />},
+      { name: 'Tailwind CSS', icon: <TailwindCss key="tailwindcss" /> },
       { name: 'Vercel', icon: <Vercel key="vercel" /> },
       { name: 'Next.js', icon: <NextJs key="nextjs" /> },
     ],
@@ -83,26 +102,7 @@ export const projects: Project[] = [
     projectDetailsPageSlug: '/projects/npm-kit',
     isWorking: true,
   },
-  {
-    title: 'Pasandida Aurat',
-    description:
-      'Innovative dating platform featuring anonymous questions and authentic connections - currently in development',
-    image: '/project/pasandida.png',
-    video: 'https://ik.imagekit.io/hokb3mrdr/pasandida.mp4',
-    link: 'https://www.pasandidaurat.com/',
-    technologies: [
-      { name: 'Next.js', icon: <NextJs key="nextjs" /> },
-      { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
-      { name: 'Prisma', icon: <Prisma key="prisma" /> },
-      { name: 'PostgreSQL', icon: <PostgreSQL key="postgresql" /> },
-      { name: 'Tailwind CSS', icon: <TailwindCss key="tailwindcss" /> },
-      { name: 'Socket.io', icon: <SocketIo key="socketio" /> },
-    ],
-    live: 'https://www.pasandidaurat.com/',
-    details: true,
-    projectDetailsPageSlug: '/projects/pasandida-aurat',
-    isWorking: false, // Currently in development
-  },
+
   {
     title: 'The Quest',
     description:
