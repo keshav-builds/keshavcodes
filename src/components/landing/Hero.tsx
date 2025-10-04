@@ -63,7 +63,7 @@ const copyToClipboard = async () => {
         </h1>
         {/*  Description */}
         <div className="mt-1 ">
-          {/* <TextGenerateEffect words="I'm a full stack web developer, passionate about crafting responsive, user-friendly web applications with the MERN stack and beyond. Skilled in React, JavaScript, UI/UX design, and open to exciting new opportunities in any technology." /> */}
+
           <p className="mt-2 text-base md:text-lg leading-relaxed   max-w-3xl mx-auto ">
             I&apos;m a{' '}
             <span className="text-blue-500 dark:text-blue-400 font-semibold">
@@ -73,7 +73,7 @@ const copyToClipboard = async () => {
             with the MERN stack and beyond. Skilled in React, JavaScript, UI/UX
             design.{' '}
             <Highlighter action="underline" color="#60A5FA">
-              Open to any tech opportunities
+              Open to all tech opportunities
             </Highlighter>
           </p>
         </div>

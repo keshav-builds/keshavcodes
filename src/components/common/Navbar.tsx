@@ -14,7 +14,7 @@ export default function Navbar() {
 
   return (
     <Container
-      className="sticky top-0 z-20 rounded-md py-3 backdrop-blur-xl"
+      className="sticky top-0 z-20 rounded-md py-3 backdrop-blur-md bg-white/80 dark:bg-black/80"
     >
       <div className="flex items-center justify-between px-4 sm:px-6">
         {/* Left: Logo */}
@@ -26,7 +26,7 @@ export default function Navbar() {
 
         {/* Center: Nav links */}
         <nav className="flex-1 flex justify-center">
-          <div className="flex  bg-neutral-100 dark:bg-black/90 rounded-full border border-neutral-300 dark:border-neutral-700 shadow-md px-4 sm:px-8 py-2 gap-4 sm:gap-6">
+          <div className="flex  bg-white/80 dark:bg-gray-900/80 rounded-full border border-neutral-300 dark:border-gray-700 shadow-md px-4 sm:px-8 py-2 gap-4 sm:gap-6">
             {navbarConfig.navItems.map((item) => {
               // Check if current item.href is active:
               const isActive = pathname === item.href;

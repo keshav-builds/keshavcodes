@@ -16,49 +16,63 @@ export default function ThemeSwitch({ className }: ThemeSwitchProps) {
 
   useEffect(() => {
     setMounted(true);
-    return () => {
-      const existingTransition = document.querySelector('[data-theme-transition]');
-      if (existingTransition) {
-        existingTransition.remove();
-      }
-    };
   }, []);
 
   const toggleTheme = useCallback(
-    async (event: React.MouseEvent<HTMLButtonElement>) => {
-      if (isAnimating) return;
+    async () => {
+      if (isAnimating || !mounted) return;
       setIsAnimating(true);
-      const rect = event.currentTarget.getBoundingClientRect();
-      const x = rect.left + rect.width / 2;
-      const y = rect.top + rect.height / 2;
-      const backgroundColor = resolvedTheme === 'light' ? 'oklch(0.145 0 0)' : 'oklch(1 0 0)';
-
-      const transition = document.createElement('div');
-      transition.setAttribute('data-theme-transition', 'true');
-      transition.style.cssText = `
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        pointer-events: none;
-        background: ${backgroundColor};
-        clip-path: circle(0px at ${x}px ${y}px);
-        transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1);
-      `;
-      document.body.appendChild(transition);
-      requestAnimationFrame(() => {
-        const maxRadius = Math.max(window.innerWidth, window.innerHeight) * 1.2;
-        transition.style.clipPath = `circle(${maxRadius}px at ${x}px ${y}px)`;
-      });
 
       const newTheme = resolvedTheme === 'light' ? 'dark' : 'light';
-      setTimeout(() => setTheme(newTheme), 250);
+      
+      const overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.top = '0';
+      overlay.style.left = '0';
+      overlay.style.width = '100%';
+      overlay.style.height = '100%';
+      overlay.style.zIndex = '9999';
+      overlay.style.pointerEvents = 'none';
+      overlay.style.willChange = 'clip-path';
+      overlay.style.backfaceVisibility = 'hidden';
+      overlay.style.transform = 'translateZ(0)';
+      
+      if (resolvedTheme === 'light') {
+        overlay.style.background = '#ffffff';
+        overlay.style.backgroundImage = `
+          linear-gradient(to right, rgba(200,200,220,0.1) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(200,200,220,0.1) 1px, transparent 1px),
+          radial-gradient(ellipse at center, rgba(240,240,255,0.15) 0%, transparent 70%),
+          radial-gradient(ellipse at center, rgba(120,180,255,0.1) 0%, transparent 70%)
+        `;
+      } else {
+        overlay.style.background = '#000000';
+        overlay.style.backgroundImage = `
+          linear-gradient(to right, rgba(60,60,100,0.15) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(60,60,100,0.15) 1px, transparent 1px),
+          radial-gradient(ellipse at center, rgba(80,120,255,0.11) 0%, transparent 70%),
+          radial-gradient(ellipse at center, rgba(80,120,255,0.13) 0%, transparent 70%)
+        `;
+      }
+      
+      overlay.style.backgroundSize = '40px 40px, 40px 40px, 100% 100%, 100% 100%';
+      overlay.style.clipPath = 'inset(0 0 0 0)';
+      
+      document.body.appendChild(overlay);
+      overlay.offsetHeight;
+      setTheme(newTheme);
 
       setTimeout(() => {
-        transition.remove();
-        setIsAnimating(false);
-      }, 500);
+        overlay.style.transition = 'clip-path 450ms cubic-bezier(0.65, 0, 0.35, 1)';
+        overlay.style.clipPath = 'inset(100% 0 0 0)';
+        
+        setTimeout(() => {
+          overlay.remove();
+          setIsAnimating(false);
+        }, 450);
+      }, 30);
     },
-    [resolvedTheme, isAnimating, setTheme],
+    [resolvedTheme, isAnimating, mounted, setTheme]
   );
 
   if (!mounted) return null;
@@ -67,23 +81,25 @@ export default function ThemeSwitch({ className }: ThemeSwitchProps) {
     <button
       onClick={toggleTheme}
       disabled={isAnimating}
-      className={`relative flex h-8 w-8 items-center justify-center overflow-hidden transition-opacity hover:opacity-80 ${className} hover:cursor-pointer hover:text-blue-500 z-50`}
+      className={`group relative flex h-10 w-10 items-center justify-center rounded-xl transition-all duration-200 hover:scale-110 active:scale-95 hover:bg-blue-500/10 disabled:cursor-not-allowed ${className} hover:cursor-pointer z-50`}
       aria-label="Toggle theme"
     >
-      <Sun
-        className={`absolute h-6 w-6 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
-          resolvedTheme === 'dark'
-            ? 'translate-y-0 scale-100 opacity-100'
-            : 'translate-y-5 scale-50 opacity-0'
-        }`}
-      />
-      <Moon
-        className={`absolute h-6 w-6 transition-all duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
-          resolvedTheme === 'light'
-            ? 'translate-y-0 scale-100 opacity-100'
-            : 'translate-y-5 scale-50 opacity-0'
-        }`}
-      />
+      <div className="relative h-6 w-6">
+        <Sun
+          className={`absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+            resolvedTheme === 'dark'
+              ? 'rotate-0 scale-100 opacity-100'
+              : 'rotate-180 scale-0 opacity-0'
+          }`}
+        />
+        <Moon
+          className={`absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${
+            resolvedTheme === 'light'
+              ? 'rotate-0 scale-100 opacity-100'
+              : '-rotate-180 scale-0 opacity-0'
+          }`}
+        />
+      </div>
     </button>
   );
 }
