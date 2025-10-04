@@ -40,7 +40,7 @@ export default function Cheatsheets() {
                 px-6 py-4 flex flex-row items-center gap-5 justify-between
                 rounded-xl border border-border/70 shadow-md
                transition-colors
-                hover:shadow-md hover:bg-muted/60 dark:hover:bg-muted/60
+                hover:shadow-md hover:bg-muted/60 dark:hover:bg-muted/30
                 cursor-pointer
               `}
             >

@@ -4,7 +4,6 @@ import React from 'react';
 import { CodeCopyButton } from './CodeCopyButton';
 
 export const BlogComponents = {
-  // Override default image component
   img: ({
     src,
     alt,
@@ -18,12 +17,11 @@ export const BlogComponents = {
       src={src}
       alt={alt}
       width={800}
-      height={400}
-      className="rounded-lg"
+      height={450}
+      className="rounded-lg my-8"
       {...props}
     />
   ),
-  // Custom heading with better styling
   h1: ({
     children,
     ...props
@@ -31,7 +29,7 @@ export const BlogComponents = {
     children: React.ReactNode;
     [key: string]: unknown;
   }) => (
-    <h1 className="mb-6 text-4xl font-bold" {...props}>
+    <h1 className="mb-6 mt-10 text-3xl sm:text-4xl font-bold leading-tight" {...props}>
       {children}
     </h1>
   ),
@@ -42,7 +40,7 @@ export const BlogComponents = {
     children: React.ReactNode;
     [key: string]: unknown;
   }) => (
-    <h2 className="mb-4 mt-8 text-3xl font-semibold" {...props}>
+    <h2 className="mb-4 mt-10 text-2xl sm:text-3xl font-bold leading-tight" {...props}>
       {children}
     </h2>
   ),
@@ -53,11 +51,10 @@ export const BlogComponents = {
     children: React.ReactNode;
     [key: string]: unknown;
   }) => (
-    <h3 className="mb-3 mt-6 text-2xl font-medium" {...props}>
+    <h3 className="mb-3 mt-8 text-xl sm:text-2xl font-semibold leading-snug" {...props}>
       {children}
     </h3>
   ),
-  // Custom paragraph styling
   p: ({
     children,
     ...props
@@ -65,11 +62,10 @@ export const BlogComponents = {
     children: React.ReactNode;
     [key: string]: unknown;
   }) => (
-    <p className="mb-4 leading-7 text-muted-foreground" {...props}>
+    <p className="mb-6 text-base sm:text-lg leading-relaxed" {...props}>
       {children}
     </p>
   ),
-  // Custom list styling
   ul: ({
     children,
     ...props
@@ -77,7 +73,7 @@ export const BlogComponents = {
     children: React.ReactNode;
     [key: string]: unknown;
   }) => (
-    <ul className="mb-4 ml-6 list-disc space-y-2" {...props}>
+    <ul className="mb-6 ml-6 list-disc space-y-3" {...props}>
       {children}
     </ul>
   ),
@@ -88,7 +84,7 @@ export const BlogComponents = {
     children: React.ReactNode;
     [key: string]: unknown;
   }) => (
-    <ol className="mb-4 ml-6 list-decimal space-y-2" {...props}>
+    <ol className="mb-6 ml-6 list-decimal space-y-3" {...props}>
       {children}
     </ol>
   ),
@@ -99,7 +95,7 @@ export const BlogComponents = {
     children: React.ReactNode;
     [key: string]: unknown;
   }) => (
-    <li className="leading-7 text-muted-foreground" {...props}>
+    <li className="leading-relaxed" {...props}>
       {children}
     </li>
   ),
@@ -111,33 +107,21 @@ export const BlogComponents = {
     [key: string]: unknown;
   }) => {
     const getTextContent = (node: React.ReactNode): string => {
-      if (typeof node === 'string') {
-        return node;
+      if (typeof node === 'string') return node;
+      if (typeof node === 'number') return String(node);
+      if (React.isValidElement(node) && node.props && typeof node.props === 'object') {
+        return getTextContent((node.props as { children?: React.ReactNode }).children);
       }
-      if (typeof node === 'number') {
-        return String(node);
-      }
-      if (
-        React.isValidElement(node) &&
-        node.props &&
-        typeof node.props === 'object'
-      ) {
-        return getTextContent(
-          (node.props as { children?: React.ReactNode }).children,
-        );
-      }
-      if (Array.isArray(node)) {
-        return node.map(getTextContent).join('');
-      }
+      if (Array.isArray(node)) return node.map(getTextContent).join('');
       return '';
     };
 
     const codeText = getTextContent(children);
 
     return (
-      <div className="group relative mb-4">
+      <div className="group relative my-6">
         <pre
-          className="overflow-x-auto rounded-lg border bg-muted/30 p-4 text-sm [&>code]:bg-transparent [&>code]:p-0"
+          className="overflow-x-auto rounded-lg border bg-muted/30 p-4 text-sm leading-relaxed [&>code]:bg-transparent [&>code]:p-0"
           {...props}
         >
           {children}
@@ -146,7 +130,6 @@ export const BlogComponents = {
       </div>
     );
   },
-  // Inline code styling (not affected by syntax highlighting)
   code: ({
     children,
     className,
@@ -156,7 +139,6 @@ export const BlogComponents = {
     className?: string;
     [key: string]: unknown;
   }) => {
-    // If it's part of a pre block (syntax highlighted), don't apply inline styling
     if (className?.includes('language-')) {
       return (
         <code className={className} {...props}>
@@ -165,14 +147,15 @@ export const BlogComponents = {
       );
     }
 
-    // Inline code styling
     return (
-      <code className="rounded px-2 py-1 text-sm font-mono" {...props}>
+      <code 
+        className="rounded bg-muted px-1.5 py-0.5 text-sm font-mono border border-border/40" 
+        {...props}
+      >
         {children}
       </code>
     );
   },
-  // Custom blockquote styling
   blockquote: ({
     children,
     ...props
@@ -181,10 +164,32 @@ export const BlogComponents = {
     [key: string]: unknown;
   }) => (
     <blockquote
-      className="mb-4 border-l-4 border-primary pl-4 italic text-muted-foreground"
+      className="my-6 border-l-4 border-primary/50 pl-6 italic text-muted-foreground bg-muted/30 py-4 rounded-r-lg"
       {...props}
     >
       {children}
     </blockquote>
+  ),
+  a: ({
+    children,
+    href,
+    ...props
+  }: {
+    children: React.ReactNode;
+    href?: string;
+    [key: string]: unknown;
+  }) => (
+    <a
+      href={href}
+      className="text-primary hover:text-primary/80 underline underline-offset-4 decoration-primary/50 hover:decoration-primary transition-colors"
+      target={href?.startsWith('http') ? '_blank' : undefined}
+      rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+      {...props}
+    >
+      {children}
+    </a>
+  ),
+  hr: (props: { [key: string]: unknown }) => (
+    <hr className="my-10 border-border/40" {...props} />
   ),
 };

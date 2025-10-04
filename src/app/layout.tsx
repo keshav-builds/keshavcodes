@@ -12,7 +12,12 @@ import { Toaster } from 'sonner';
 
 import './globals.css';
 
-export const metadata = getMetadata('/');
+export const metadata = {
+  ...getMetadata('/'),
+  icons: {
+    icon: '/assets/favicon.png', 
+  },
+};
 
 export default function RootLayout({
   children,
@@ -29,7 +34,7 @@ export default function RootLayout({
                 color="#3b82f6"
                 initialPosition={0.08}
                 crawlSpeed={200}
-                height={3}
+                height={2}
                 crawl={true}
                 showSpinner={false}
                 easing="ease"
