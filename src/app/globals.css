@@ -156,45 +156,34 @@
       border-color 0.2s ease;
   }
 
-  /* Custom Scrollbar Styling */
-  ::-webkit-scrollbar {
-  @apply w-2 h-2;
+/* Modern minimal scrollbar  */
+
+*::-webkit-scrollbar {
+  width: 8px;
 }
 
-::-webkit-scrollbar-track {
-  @apply bg-transparent;
+*::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
-  @apply bg-blue-600/70 rounded-full;
+*::-webkit-scrollbar-thumb {
+  background: rgba(59, 130, 246, 0.6);
+  border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-blue-500;
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(59, 130, 246, 0.8);
 }
 
-/* Dark mode scrollbar */
-.dark ::-webkit-scrollbar-track {
-  @apply bg-gray-950/40;
+/* Dark mode */
+.dark *::-webkit-scrollbar-thumb {
+  background: rgba(96, 165, 250, 0.4);
 }
 
-.dark ::-webkit-scrollbar-thumb {
-  @apply bg-blue-500/80 rounded-full;
+.dark *::-webkit-scrollbar-thumb:hover {
+  background: rgba(96, 165, 250, 0.6);
 }
 
-.dark ::-webkit-scrollbar-thumb:hover {
-  @apply bg-blue-400;
-}
-
-/* Firefox support */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgb(37 99 235 / 0.7) transparent;
-}
-
-.dark * {
-  scrollbar-color: rgb(59 130 246 / 0.8) rgb(3 7 18 / 0.4);
-}
 
 }
 
@@ -255,6 +244,8 @@
   animation: wave 1.5s ease-in-out infinite;
   transform-origin: 70% 70%;
 }
+
+
 
 /* Aurora text animation */
 @theme inline {

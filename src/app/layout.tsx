@@ -5,9 +5,9 @@ import Navbar from '@/components/common/Navbar';
 import Providers from '@/components/common/Providers';
 import { Quote } from '@/components/common/Quote';
 import { generateMetadata as getMetadata } from '@/config/Meta';
+import HolyLoader from 'holy-loader';
 import ReactLenis from 'lenis/react';
 import { ViewTransitions } from 'next-view-transitions';
-import NextTopLoader from 'nextjs-toploader';
 import { Toaster } from 'sonner';
 
 import './globals.css';
@@ -15,7 +15,7 @@ import './globals.css';
 export const metadata = {
   ...getMetadata('/'),
   icons: {
-    icon: '/assets/favicon.png', 
+    icon: '/assets/favicon.png',
   },
 };
 
@@ -30,17 +30,12 @@ export default function RootLayout({
         <body className="relative font-hanken-grotesk antialiased">
           <Providers>
             <ReactLenis root>
-              <NextTopLoader
+              <HolyLoader
                 color="#3b82f6"
-                initialPosition={0.08}
-                crawlSpeed={200}
-                height={2}
-                crawl={true}
+                height="3px"
+                speed={100} // Faster animation
+                easing="linear" // More consistent
                 showSpinner={false}
-                easing="ease"
-                speed={200}
-                shadow="0 0 5px #2299DD,0 0 5px #2299DD"
-                
               />
 
               {/* Background grid positioned absolutely behind */}

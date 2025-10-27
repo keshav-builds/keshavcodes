@@ -39,20 +39,10 @@ export default function ThemeSwitch({ className }: ThemeSwitchProps) {
       
       if (resolvedTheme === 'light') {
         overlay.style.background = '#ffffff';
-        overlay.style.backgroundImage = `
-          linear-gradient(to right, rgba(200,200,220,0.1) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(200,200,220,0.1) 1px, transparent 1px),
-          radial-gradient(ellipse at center, rgba(240,240,255,0.15) 0%, transparent 70%),
-          radial-gradient(ellipse at center, rgba(120,180,255,0.1) 0%, transparent 70%)
-        `;
+       
       } else {
         overlay.style.background = '#000000';
-        overlay.style.backgroundImage = `
-          linear-gradient(to right, rgba(60,60,100,0.15) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(60,60,100,0.15) 1px, transparent 1px),
-          radial-gradient(ellipse at center, rgba(80,120,255,0.11) 0%, transparent 70%),
-          radial-gradient(ellipse at center, rgba(80,120,255,0.13) 0%, transparent 70%)
-        `;
+       
       }
       
       overlay.style.backgroundSize = '40px 40px, 40px 40px, 100% 100%, 100% 100%';
