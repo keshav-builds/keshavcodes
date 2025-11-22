@@ -1,7 +1,7 @@
 import Container from '@/components/common/Container';
 import ContactForm from '@/components/contact/ContactForm';
-import { Separator } from '@/components/ui/separator';
-import { contactConfig } from '@/config/Contact';
+// import { Separator } from '@/components/ui/separator';
+// import { contactConfig } from '@/config/Contact';
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import { Metadata } from 'next';
 import React from 'react';
@@ -26,7 +26,7 @@ export default function ContactPage() {
     <Container className="py-16">
       <div className="space-y-8">
         {/* Header */}
-        <div className="space-y-4 text-center">
+        {/* <div className="space-y-4 text-center">
           <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
             {contactConfig.title}
           </h1>
@@ -34,7 +34,7 @@ export default function ContactPage() {
             {contactConfig.description}
           </p>
         </div>
-        <Separator />
+        <Separator /> */}
 
         {/* Contact Form */}
         <div className="mx-auto max-w-2xl">

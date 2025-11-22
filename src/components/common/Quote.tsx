@@ -24,7 +24,7 @@ export const Quote = () => {
     <Container className="py-8 sm:py-12">
       <div className="max-w-2xl mx-auto px-4">
         <blockquote className="relative border-l-2 border-blue-500/30 dark:border-blue-400/30 pl-4 sm:pl-6">
-          {/* Subtle SVG Quote Mark in Background */}
+          {/* Subtle SVG Quote Mark  */}
           <svg
             aria-hidden="true"
             className="absolute left-2 top-0 w-12 h-12 sm:w-14 sm:h-14 text-gray-300 dark:text-gray-600 opacity-40"
@@ -35,7 +35,8 @@ export const Quote = () => {
           </svg>
 
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 italic leading-relaxed relative z-10">
-            "{quote}"
+            &ldquo;{quote}&rdquo;
+
           </p>
           <footer className="mt-2 text-right relative z-10">
             <cite className="not-italic text-sm sm:text-base text-gray-500 dark:text-gray-500">

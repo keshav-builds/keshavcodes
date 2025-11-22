@@ -4,7 +4,7 @@ import { BlogFrontmatter } from '@/types/blog';
 import rehypeHighlight from '@shikijs/rehype';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image from 'next/image';
-import Link from 'next/link';
+// import Link from 'next/link';
 
 import Calender from '../svgs/Calender';
 import { BlogComponents } from './BlogComponents';

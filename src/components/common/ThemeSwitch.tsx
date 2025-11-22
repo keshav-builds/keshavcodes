@@ -49,7 +49,7 @@ export default function ThemeSwitch({ className }: ThemeSwitchProps) {
       overlay.style.clipPath = 'inset(0 0 0 0)';
       
       document.body.appendChild(overlay);
-      overlay.offsetHeight;
+      void overlay.offsetHeight;
       setTheme(newTheme);
 
       setTimeout(() => {

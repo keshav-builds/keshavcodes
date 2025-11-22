@@ -34,7 +34,7 @@ const TerminalWindow = () => {
       } else {
         clearInterval(timer);
       }
-    }, 400);
+    }, 800);
 
     return () => clearInterval(timer);
   }, []);
@@ -46,26 +46,27 @@ const TerminalWindow = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
     >
-      <div className="rounded-lg border border-foreground/10 bg-background/50 backdrop-blur-sm shadow-lg overflow-hidden">
-        <div className="flex items-center gap-2 px-3 py-1.5 bg-foreground/5 border-b border-foreground/10">
-          <div className="flex gap-1.5">
-            <div className="w-2 h-2 rounded-full bg-red-500" />
-            <div className="w-2 h-2 rounded-full bg-yellow-500" />
-            <div className="w-2 h-2 rounded-full bg-green-500" />
+      <div className="rounded-xl border-2 border-neutral-300 bg-white/90 backdrop-blur-xl shadow-md overflow-hidden dark:border-neutral-700 dark:bg-neutral-950/90">
+        <div className="flex items-center gap-2 px-4 py-2 bg-neutral-100/80 border-b-2 border-neutral-300 dark:bg-neutral-900/80 dark:border-neutral-700">
+          <div className="flex gap-2">
+            <div className="w-3 h-3 rounded-full bg-red-500" />
+            <div className="w-3 h-3 rounded-full bg-yellow-500" />
+            <div className="w-3 h-3 rounded-full bg-green-500" />
           </div>
-          <span className="text-xs text-muted-foreground">terminal</span>
+          <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">terminal</span>
         </div>
 
-        <div className="p-3 font-mono text-xs space-y-1 min-h-[140px]">
+        <div className="p-4 font-mono text-sm space-y-1 h-[180px]">
           {displayedLines.filter(Boolean).map((line, i) => {
             const isCommand = line?.startsWith('$') || false;
             return (
               <motion.div
                 key={i}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3 }}
                 className={
-                  isCommand ? 'text-blue-500' : 'text-muted-foreground pl-2'
+                  isCommand ? 'text-blue-500 font-semibold' : 'text-neutral-600 dark:text-neutral-400 pl-2'
                 }
               >
                 {line}
@@ -75,8 +76,8 @@ const TerminalWindow = () => {
           {displayedLines.length < 7 && (
             <motion.span
               animate={{ opacity: [1, 0] }}
-              transition={{ duration: 0.7, repeat: Infinity }}
-              className="inline-block w-1 h-3 bg-blue-500"
+              transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
+              className="inline-block w-2 h-4 bg-blue-500"
             />
           )}
         </div>
@@ -156,36 +157,107 @@ export default function Hero() {
             and continuously learning new technologies
           </p>
 
-          <motion.div
-            className="grid grid-cols-2 sm:flex gap-3 sm:gap-4 lg:justify-start justify-center pt-2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-              <Link
-                href={buttons[0].href}
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:px-7 sm:py-3.5 rounded-lg border-2 border-foreground/20 hover:border-foreground/40 bg-background/50 backdrop-blur-sm font-medium transition-all duration-300 text-sm sm:text-base min-h-[44px] w-full"
-              >
-                <span className="[&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-5 sm:[&>svg]:h-5 flex items-center">
-                  <CV />
-                </span>
-                <span>Resume</span>
-              </Link>
-            </motion.div>
+       {/* CTA Buttons*/}
+<motion.div
+  className="flex flex-row items-center gap-3 sm:gap-4 lg:justify-start justify-center pt-2"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.4 }}
+>
+  {/* Secondary CTA */}
+  <motion.div 
+    whileHover={{ scale: 1.02 }} 
+    whileTap={{ scale: 0.98 }}
+    className="flex-1 sm:flex-initial"
+  >
+    <Link
+      href="/resume.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group relative inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-7 sm:py-3.5 rounded-lg border-2 border-foreground/20 hover:border-foreground/40 bg-background/50 backdrop-blur-sm font-semibold hover:bg-foreground/5 transition-all duration-300 w-full overflow-hidden"
+    >
+      {/* Shine effect for Resume */}
+      <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-[1200ms] ease-out bg-gradient-to-r from-transparent via-foreground/[0.08] to-transparent" />
+      
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        fill="none" 
+        viewBox="0 0 24 24" 
+        strokeWidth={2} 
+        stroke="currentColor"
+        className="w-5 h-5 flex-shrink-0 relative z-10"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+      </svg>
+      <span className="text-[15px] leading-none relative z-10">Resume</span>
+    </Link>
+  </motion.div>
 
-            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-              <Link
-                href={buttons[1].href}
-                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:px-8 sm:py-3.5 rounded-lg bg-blue-600/90 hover:bg-blue-600 dark:bg-blue-500/90 dark:hover:bg-blue-500 text-white font-medium sm:font-semibold shadow-md shadow-blue-500/10 sm:shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-300 text-sm sm:text-base min-h-[44px] w-full"
-              >
-                <span className="[&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-5 sm:[&>svg]:h-5 flex items-center">
-                  <Chat />
-                </span>
-                <span>Contact</span>
-              </Link>
-            </motion.div>
-          </motion.div>
+  {/* Primary CTA - Contact */}
+  <motion.div 
+    whileHover={{ scale: 1.02 }} 
+    whileTap={{ scale: 0.98 }}
+    className="flex-1 sm:flex-initial"
+  >
+    <Link
+      href="/contact"
+      className="group relative inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-7 sm:py-3.5 rounded-lg bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 w-full overflow-hidden"
+    >
+     
+      <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+      
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        fill="none" 
+        viewBox="0 0 24 24" 
+        strokeWidth={2} 
+        stroke="currentColor"
+        className="w-5 h-5 flex-shrink-0 relative z-10"
+      >
+        <path strokeLinecap="round" strokeLinejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" />
+      </svg>
+      <span className="text-[15px] leading-none relative z-10">Message</span>
+    </Link>
+  </motion.div>
+</motion.div>
+
+{/* Schedule Call  */}
+<motion.div
+  className="flex lg:justify-start justify-center pt-5"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.5 }}
+>
+  <Link
+    href="https://cal.com/keshav-codes/intro-call"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group inline-flex items-center gap-2 px-2 py-0 rounded-lg text-md  text-foreground hover:text-blue-600 dark:hover:text-blue-400 hover:bg-foreground/5 transition-all duration-300"
+  >
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      fill="none" 
+      viewBox="0 0 24 24" 
+      strokeWidth={2} 
+      stroke="currentColor"
+      className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300 flex-shrink-0"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+    </svg>
+    <span>Schedule a Call</span>
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      fill="none" 
+      viewBox="0 0 24 24" 
+      strokeWidth={2.5} 
+      stroke="currentColor"
+      className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+    </svg>
+  </Link>
+</motion.div>
+
 
           <motion.div
             className="flex gap-5 sm:gap-6 lg:justify-start justify-center pt-2"
