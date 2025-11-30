@@ -120,11 +120,10 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
         >
           <div className="space-y-4 sm:space-y-4">
-            <h1 className="text-[46px] sm:text-[44px] md:text-6xl font-semibold leading-tight sm:whitespace-nowrap">
-              Hi, I&apos;m{' '} 
+            <h1 className="text-[44px] sm:text-[44px] md:text-6xl font-semibold leading-tight sm:whitespace-nowrap">
+              Hi, I&apos;m{' '}
               <span className="inline-block">
                 <AuroraText>{name}</AuroraText>{' '}
-              
                 <motion.span
                   className="inline-block scale-85"
                   animate={{ rotate: [0, 14, -8, 14, 0] }}
@@ -159,9 +158,10 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          <p className="text-lg md:text-xl leading-relaxed text-muted-foreground">
+          <p className="text-lg md:text-xl tracking-[-0.01em] text-muted-foreground">
             Building modern web applications from design to deployment,
-            dedicated to quality and exceptional user experience.
+            <br className="hidden md:block" /> dedicated to quality and
+            exceptional user experience.
           </p>
 
           {/* CTA Buttons*/}
