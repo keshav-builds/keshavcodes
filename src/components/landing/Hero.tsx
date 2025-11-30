@@ -8,8 +8,6 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 import Container from '../common/Container';
-import CV from '../svgs/CV';
-import Chat from '../svgs/Chat';
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
 
 const TerminalWindow = () => {
@@ -113,28 +111,36 @@ export default function Hero() {
   };
 
   return (
-    <Container className="mx-auto max-w-6xl py-4 sm:py-6 md:py-8 px-4">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+    <Container className="mx-auto max-w-6xl py-8 sm:py-6 md:py-8 px-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-start items-center">
         <motion.div
-          className="flex flex-col space-y-4 sm:space-y-5 text-center lg:text-left order-2 lg:order-1"
+          className="flex flex-col space-y-5 sm:space-y-5 text-center lg:text-left order-2 lg:order-1"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="space-y-3 sm:space-y-4">
-            <h1 className="text-[44px] md:text-6xl font-semibold leading-tight whitespace-nowrap">
-              Hi, I&apos;m <AuroraText>{name}</AuroraText>{' '}
-              <motion.span
-                className="inline-block"
-                animate={{ rotate: [0, 14, -8, 14, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 1 }}
-              >
-                👋🏻
-              </motion.span>
+          <div className="space-y-4 sm:space-y-4">
+            <h1 className="text-[46px] sm:text-[44px] md:text-6xl font-semibold leading-tight sm:whitespace-nowrap">
+              Hi, I&apos;m{' '} 
+              <span className="inline-block">
+                <AuroraText>{name}</AuroraText>{' '}
+              
+                <motion.span
+                  className="inline-block scale-85"
+                  animate={{ rotate: [0, 14, -8, 14, 0] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatDelay: 1,
+                  }}
+                >
+                  👋🏻
+                </motion.span>
+              </span>
             </h1>
 
             <motion.div
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20"
+              className="inline-flex items-center gap-2 px-3.5 py-2 sm:px-3 sm:py-1.5 rounded-full bg-green-500/10 border border-green-500/20"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
@@ -153,68 +159,28 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          <p className="text-base sm:text-lg md:text-xl leading-relaxed text-muted-foreground">
-            Full-stack developer building{' '}
-            <span className="font-semibold text-blue-600 dark:text-blue-400">
-              impactful solutions
-            </span>{' '}
-            and continuously learning new technologies
+          <p className="text-lg md:text-xl leading-relaxed text-muted-foreground">
+            Building modern web applications from design to deployment,
+            dedicated to quality and exceptional user experience.
           </p>
 
           {/* CTA Buttons*/}
           <motion.div
-            className="flex flex-row items-center gap-3 sm:gap-4 lg:justify-start justify-center pt-2"
+            className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 lg:justify-start justify-center pt-1 sm:pt-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            {/* Secondary CTA */}
             <motion.div
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="flex-1 sm:flex-initial"
-            >
-              <Link
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-7 sm:py-3.5 rounded-lg border-2 border-foreground/20 hover:border-foreground/40 bg-background/50 backdrop-blur-sm font-semibold hover:bg-foreground/5 transition-all duration-300 w-full overflow-hidden"
-              >
-                {/* Shine effect for Resume */}
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-[1200ms] ease-out bg-gradient-to-r from-transparent via-foreground/[0.08] to-transparent" />
-
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-5 h-5 flex-shrink-0 relative z-10"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
-                  />
-                </svg>
-                <span className="text-[15px] leading-none relative z-10">
-                  Resume
-                </span>
-              </Link>
-            </motion.div>
-
-            {/* Primary CTA - Contact */}
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="flex-1 sm:flex-initial"
+              className="w-full sm:flex-1 order-1 sm:order-2"
             >
               <Link
                 href="/contact"
-                className="group relative inline-flex items-center justify-center gap-2 px-5 py-3 sm:px-7 sm:py-3.5 rounded-lg bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 w-full overflow-hidden"
+                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-5 sm:py-3 md:px-7 md:py-3.5 rounded-lg bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 w-full overflow-hidden"
               >
                 <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/25 to-transparent" />
-
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -239,11 +205,42 @@ export default function Hero() {
                 </span>
               </Link>
             </motion.div>
+
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full sm:flex-1 order-2 sm:order-1"
+            >
+              <Link
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-5 sm:py-3 md:px-7 md:py-3.5 rounded-lg border-2 border-foreground/20 hover:border-foreground/40 bg-background/50 backdrop-blur-sm font-semibold hover:bg-foreground/5 transition-all duration-300 w-full overflow-hidden"
+              >
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-[1200ms] ease-out bg-gradient-to-r from-transparent via-foreground/[0.08] to-transparent" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={2}
+                  stroke="currentColor"
+                  className="w-5 h-5 flex-shrink-0 relative z-10"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
+                  />
+                </svg>
+                <span className="text-[15px] leading-none relative z-10">
+                  Resume
+                </span>
+              </Link>
+            </motion.div>
           </motion.div>
 
-          {/* Schedule Call  */}
           <motion.div
-            className="flex lg:justify-start justify-center pt-5"
+            className="flex lg:justify-start justify-center pt-3 sm:pt-5"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
@@ -252,7 +249,7 @@ export default function Hero() {
               href="https://cal.com/keshav-codes/intro-call"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 px-2 py-0 rounded-lg text-md  text-foreground hover:text-blue-600 dark:hover:text-blue-400 hover:bg-foreground/5 transition-all duration-300"
+              className="group inline-flex items-center gap-2 px-3 py-2 sm:px-2 sm:py-0 rounded-lg text-base sm:text-md text-foreground hover:text-blue-600 dark:hover:text-blue-400 hover:bg-foreground/5 transition-all duration-300"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -287,7 +284,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.div
-            className="flex gap-5 sm:gap-6 lg:justify-start justify-center pt-2"
+            className="flex gap-6 sm:gap-5 md:gap-6 lg:justify-start justify-center pt-4 sm:pt-2 pb-2 sm:pb-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
@@ -298,12 +295,14 @@ export default function Hero() {
                   {link.name === 'Email' ? (
                     <motion.button
                       onClick={copyToClipboard}
-                      className="text-muted-foreground hover:text-foreground transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center"
+                      className="text-muted-foreground hover:text-foreground transition-all duration-300 min-w-[48px] min-h-[48px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center"
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
                       aria-label={link.name}
                     >
-                      <span className="size-6 sm:size-7">{link.icon}</span>
+                      <span className="size-7 sm:size-6 md:size-7">
+                        {link.icon}
+                      </span>
                     </motion.button>
                   ) : (
                     <motion.div
@@ -314,10 +313,12 @@ export default function Hero() {
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-foreground transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center"
+                        className="text-muted-foreground hover:text-foreground transition-all duration-300 min-w-[48px] min-h-[48px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center"
                         aria-label={link.name}
                       >
-                        <span className="size-6 sm:size-7">{link.icon}</span>
+                        <span className="size-7 sm:size-6 md:size-7">
+                          {link.icon}
+                        </span>
                       </Link>
                     </motion.div>
                   )}
@@ -330,14 +331,10 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        <div className="hidden lg:flex items-center justify-end order-1 lg:order-2">
+        <div className="hidden lg:flex items-center justify-end order-1 lg:order-2 pt-22 pl-1 ">
           <TerminalWindow />
         </div>
       </div>
-      {/* hidden for mobile screen for now..
-      <div className="lg:hidden mt-8">
-        <TerminalWindow />
-      </div> */}
     </Container>
   );
 }

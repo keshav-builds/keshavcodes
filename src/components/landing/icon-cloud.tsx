@@ -67,7 +67,7 @@ export default function Icon() {
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-8">
         
-        {/* Left: Development Workflow */}
+        {/*  Development Workflow */}
         <div className="space-y-6">
           {workflowSteps.map((step, index) => (
             <div
@@ -95,7 +95,7 @@ export default function Icon() {
           ))}
         </div>
 
-        {/* Right: Icon Cloud - Hidden on Mobile */}
+        {/*Icon Cloud - Hidden on Mobile */}
         <div className="hidden lg:flex relative items-center justify-center h-[500px]">
           <div className="w-full h-full flex items-center justify-center">
             <IconCloud images={images} />
