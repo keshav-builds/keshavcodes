@@ -65,7 +65,7 @@ export default function Icon() {
         heading="Process" 
       />
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-0">
         
         {/*  Development Workflow */}
         <div className="space-y-6">
