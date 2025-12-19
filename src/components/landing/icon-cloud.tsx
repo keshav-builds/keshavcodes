@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import Container from '../common/Container';
 import SectionHeading from '../common/SectionHeading';
@@ -512,6 +512,23 @@ const DeployPipeline = () => {
 // Main Component
 export default function Icon() {
   const [activeStep, setActiveStep] = useState(0);
+  const previewRef = useRef<HTMLDivElement>(null);
+
+  const handleStepClick = (index: number) => {
+    setActiveStep(index);
+    
+    // Only scroll on mobile screens (below lg breakpoint = 1024px)
+    if (typeof window !== 'undefined' && window.innerWidth < 1024 && previewRef.current) {
+      // Small timeout to allow state update and animation to start
+      setTimeout(() => {
+        previewRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'nearest',
+        });
+      }, 100);
+    }
+  };
 
   const renderPreview = () => {
     switch (activeStep) {
@@ -541,7 +558,7 @@ export default function Icon() {
           {workflowSteps.map((step, index) => (
             <motion.button
               key={index}
-              onClick={() => setActiveStep(index)}
+              onClick={() => handleStepClick(index)}
               className={`relative w-full cursor-pointer text-left transition-all duration-300 rounded-2xl px-6 py-4 flex items-center gap-4 border ${
                 activeStep === index
                   ? 'bg-muted/70 border-border/70 shadow-sm'
@@ -573,21 +590,18 @@ export default function Icon() {
         </div>
 
         {/* Interactive Preview */}
-        {/* change if want hidden on mobile */}
-        {/* <div className="hidden lg:block"> */}
-        <div className="sticky top-24">
+        <div className="lg:sticky lg:top-24" ref={previewRef}>
           <motion.div
             key={activeStep}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            className="rounded-2xl border-3 border-border/80 overflow-hidden "
+            className="rounded-2xl border-3 border-border/80 overflow-hidden"
           >
             {renderPreview()}
           </motion.div>
         </div>
       </div>
-      {/* </div> */}
     </Container>
   );
 }
