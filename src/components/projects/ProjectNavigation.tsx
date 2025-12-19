@@ -26,7 +26,9 @@ export function ProjectNavigation({ previous, next }: ProjectNavigationProps) {
             <Button
               variant="outline"
               asChild
-              className="group h-auto w-full justify-start p-4 text-left"
+              className={`group h-auto p-4 text-left ${
+        next ? 'w-full' : 'w-1/2'
+      }`}
             >
               <Link href={`/projects/${previous.slug}`}>
                 <div className="flex items-center gap-3">
@@ -51,7 +53,9 @@ export function ProjectNavigation({ previous, next }: ProjectNavigationProps) {
             <Button
               variant="outline"
               asChild
-              className="group h-auto w-full justify-end p-4 text-right"
+              className={`group h-auto p-4 text-right ${
+        previous ? 'w-full' : 'w-1/2'
+      }`}
             >
               <Link href={`/projects/${next.slug}`}>
                 <div className="flex items-center gap-3">

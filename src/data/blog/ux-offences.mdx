@@ -1,0 +1,179 @@
+---
+title: "Things That Should Be Illegal in Modern Web Development"
+description: "A rant-style guide to the most frustrating patterns on the modern web—and how to fix them with better UX and code."
+image: "/blog/UX_offences.png"
+tags: [ "frontend", "ux", "best practices"]
+date: "2025-12-19"
+isPublished: true
+---
+
+The modern web is powerful, but a lot of it feels like a UX crime scene.
+
+You open a page and get hit with a fullscreen popup.  
+You click a button and the whole layout jumps.  
+A spinner loads forever with no explanation.
+
+This post is a small list of things that *should* be illegal in modern web development—and how to avoid them in your own projects.
+
+---
+
+## 1. Pop‑Ups Before You’ve Read Anything
+
+Landing on a page and instantly seeing a “Subscribe!” modal is a guaranteed way to make users close the tab.
+
+**Why it’s bad**
+
+- Interrupts reading before trust is built.  
+- Punishes curiosity instead of rewarding it.  
+- Trains users to ignore all future prompts.
+
+**Do this instead**
+
+- Delay prompts until the user has scrolled a bit or spent some time on the page.  
+- Make them dismissable and non‑blocking.
+
+```tsx
+// Show newsletter only after engagement
+const [showNewsletter, setShowNewsletter] = useState(false);
+
+useEffect(() => {
+  const timer = setTimeout(() => setShowNewsletter(true), 45000); // 45s
+  return () => clearTimeout(timer);
+}, []);
+```
+
+---
+
+## 2. Spinners With No Timeout, Error, or Retry
+
+A spinner that never stops is not a loading state, it’s a dead end.
+
+**Why it’s bad**
+
+- Users don’t know if it’s slow, broken, or stuck.  
+- Wastes time and kills trust.
+
+**Do this instead**
+
+- Always have a timeout.  
+- Show an error and a retry path.
+
+```tsx
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState<string | null>(null);
+
+useEffect(() => {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 10000);
+
+  async function load() {
+    try {
+      const res = await fetch("/api/data", { signal: controller.signal });
+      if (!res.ok) throw new Error("Failed to load");
+      // handle data...
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      clearTimeout(timeout);
+      setLoading(false);
+    }
+  }
+
+  load();
+  return () => controller.abort();
+}, []);
+```
+
+---
+
+## 3. Layout Shift That Dodges Your Click
+
+Nothing feels more scammy than trying to press “Cancel” and hitting “Delete” because the layout jumped.
+
+**Why it’s bad**
+
+- Breaks basic expectations: things move while you’re aiming.  
+- Often caused by images or banners loading without reserved space.
+
+**Do this instead**
+
+- Set explicit width/height on images.  
+- Reserve height for banners so content below doesn’t shift.
+
+```tsx
+<Image
+  src="/hero.png"
+  alt="Hero"
+  width={1200}
+  height={600}
+  className="h-auto w-full"
+/>
+```
+
+---
+
+## 4. Scroll‑Jacking “Experiences”
+
+If your site steals the scroll wheel, forces full-page snaps, or traps users in long animations, it’s serving the design, not the user.
+
+**Why it’s bad**
+
+- Breaks browser muscle memory.  
+- Makes some people literally motion‑sick.  
+- Often ignores `prefers-reduced-motion`.
+
+**Do this instead**
+
+- Enhance scroll, don’t replace it.  
+- Use gentle section snapping at most, and respect motion preferences.
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .scroll-animated {
+    animation: none;
+    transition: none;
+  }
+}
+```
+
+---
+
+## 5. Disabled Buttons With No Explanation
+
+If a button is disabled and the user doesn’t know *why*, it might as well be broken.
+
+**Why it’s bad**
+
+- Offers no path to success.  
+- Forces users to randomly tweak inputs.
+
+**Do this instead**
+
+- Show clear inline errors.  
+- Tell users what’s missing or invalid.
+
+```
+<input
+  value={email}
+  onChange={handleEmailChange}
+  aria-invalid={!!emailError}
+  aria-describedby="email-error"
+/>
+{emailError && (
+  <p id="email-error" className="mt-1 text-sm text-red-500">
+    {emailError}
+  </p>
+)}
+```
+
+---
+
+## Making the Web Less Annoying
+
+None of these fixes are complex. They just require asking one question before shipping:
+
+> “Would I enjoy using this if I wasn’t the one who built it?”
+
+If the answer is no, it’s probably a UX crime.
+
+Avoid these patterns, add small safeguards, and your apps will instantly feel more thoughtful, more trustworthy, and more **senior**—no fancy framework required.

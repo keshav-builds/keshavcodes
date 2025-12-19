@@ -13,8 +13,8 @@ export default function Projects() {
   return (
     <Container className="mt-20">
       <SectionHeading subHeading="Featured" heading="Projects" />
-
-      <ProjectList className="mt-8" projects={projects.slice(0, 4)} />
+      {/* change to show more projects list RN: its two on home page */}
+      <ProjectList className="mt-8" projects={projects.slice(0, 2)} />
       <div className="mt-8 flex justify-center">
         <Button variant="outline">
           <Link href="/projects">Show all projects</Link>

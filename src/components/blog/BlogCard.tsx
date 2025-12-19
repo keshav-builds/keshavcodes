@@ -83,7 +83,7 @@ export function BlogCard({ post }: BlogCardProps) {
           prefetch={true}
           className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-neutral-950"
         >
-          <CardContent className="space-y-4 p-6">
+          <CardContent className="space-y-3 p-5">
             <h3 className="line-clamp-2 text-xl font-semibold leading-tight text-neutral-900 transition-colors duration-300 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-500">
               {title}
             </h3>
@@ -121,7 +121,7 @@ export function BlogCard({ post }: BlogCardProps) {
           </CardContent>
 
           {/* Footer */}
-          <CardFooter className="flex items-center justify-between gap-4 border-t border-neutral-200/60 px-6 py-4 dark:border-neutral-800/40">
+          <CardFooter className="flex items-center justify-between gap-4 border-t border-neutral-200/90 px-6 py-4 dark:border-neutral-800/90">
             <time
               className="flex items-center gap-2 text-sm font-medium text-neutral-600 dark:text-neutral-400"
               dateTime={date}
@@ -131,7 +131,7 @@ export function BlogCard({ post }: BlogCardProps) {
             </time>
 
             <div className="flex items-center gap-2 rounded-lg border border-blue-500/30 bg-gradient-to-r from-blue-500 to-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-400/50 hover:shadow-xl hover:shadow-blue-500/30 active:scale-95">
-              <span>Read More</span>
+              <span>Explore</span>
               <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </div>
           </CardFooter>

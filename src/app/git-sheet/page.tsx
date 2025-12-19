@@ -26,7 +26,7 @@ export default function GearsPage() {
       <div className="space-y-8">
         {/* Header */}
         <div className="space-y-4 text-center">
-          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl ">Git Cheatsheet</h1>
+          <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">Git Cheatsheet</h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
             My personal, go-to set of <strong>Git commands</strong> I use daily. Perfect for when you need a quick
             reference or just getting started!
@@ -41,24 +41,26 @@ export default function GearsPage() {
 
             {/* Desktop: table layout */}
             <div className="hidden md:block overflow-x-auto">
-              <table className="min-w-full border border-gray-300 dark:border-gray-700 rounded-md overflow-hidden">
+              <table className="w-full border-collapse border border-gray-300 dark:border-gray-700 rounded-md overflow-hidden">
                 <thead className="bg-gray-100 dark:bg-gray-800">
                   <tr>
-                    <th className="text-left px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200">
+                    <th className="text-left px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 border-b border-gray-300 dark:border-gray-700" style={{ width: '50%' }}>
                       Command
                     </th>
-                    <th className="text-left px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200">
+                    <th className="text-left px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 border-b border-gray-300 dark:border-gray-700" style={{ width: '50%' }}>
                       Description
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                <tbody>
                   {commands.map(({ cmd, desc }) => (
-                    <tr key={cmd}>
-                      <td className="py-2 px-4 whitespace-nowrap font-mono text-sm text-emerald-600 dark:text-emerald-300">
-                        <code>{cmd}</code>
+                    <tr key={cmd} className="border-b border-gray-200 dark:border-gray-700 last:border-b-0">
+                     <td className="py-3 px-4 align-top font-mono text-sm text-cyan-700 dark:text-cyan-400" style={{ width: '50%' }}>
+   <code className="break-words">{cmd}</code>
                       </td>
-                      <td className="py-2 px-4 text-sm text-gray-800 dark:text-gray-300">{desc}</td>
+                      <td className="py-3 px-4 align-top text-sm text-gray-800 dark:text-gray-300" style={{ width: '50%' }}>
+                        {desc}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -72,7 +74,8 @@ export default function GearsPage() {
                   key={cmd}
                   className="border border-gray-300 dark:border-gray-700 rounded-md p-4 bg-gray-50 dark:bg-gray-900"
                 >
-                  <p className="font-mono text-indigo-600 dark:text-indigo-400 text-sm mb-1">
+                  <p className="font-mono text-cyan-700 dark:text-cyan-400 text-sm mb-1">
+
                     <code>{cmd}</code>
                   </p>
                   <p className="text-sm text-gray-800 dark:text-gray-300">{desc}</p>

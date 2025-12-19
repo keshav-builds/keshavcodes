@@ -19,13 +19,14 @@ export default function Navbar() {
 
   return (
     <Container
-      className="sticky top-0 z-20 rounded-md py-3 backdrop-blur-md transparent"
-    >
+     className="sticky top-0 z-20 py-4 rounded-xl backdrop-blur-md bg-transparent [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
+>
+    
       <div className="flex items-center justify-between px-4 sm:px-6">
         {/* Left: Logo */}
         <div className="flex-shrink-0 ">
           <Link href="/">
-            <Image src="/assets/letter.png" alt="Logo" width={50} height={50} />
+            <Image src="/assets/favicon.png" alt="Logo" width={35} height={35} />
           </Link>
         </div>
 

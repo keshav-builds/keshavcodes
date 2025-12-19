@@ -5,24 +5,39 @@ import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function PageLoader() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
   const pathname = usePathname();
 
+  // Handle initial page load
   useEffect(() => {
-    setIsLoading(true);
-    const timeout = setTimeout(() => setIsLoading(false), 600);
-    return () => clearTimeout(timeout);
-  }, [pathname]);
+    if (isInitialLoad) {
+      const timeout = setTimeout(() => {
+        setIsLoading(false);
+        setIsInitialLoad(false);
+      }, 600); 
+      return () => clearTimeout(timeout);
+    }
+  }, [isInitialLoad]);
+
+  // Handle route changes (after initial load)
+  useEffect(() => {
+    if (!isInitialLoad) {
+      setIsLoading(true);
+      const timeout = setTimeout(() => setIsLoading(false), 300); 
+      return () => clearTimeout(timeout);
+    }
+  }, [pathname, isInitialLoad]);
 
   return (
     <AnimatePresence mode="wait">
       {isLoading && (
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.15 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-white/90 backdrop-blur-md dark:bg-neutral-950/90"
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-white/98 backdrop-blur-lg dark:bg-neutral-950/98"
         >
           <div className="flex items-center gap-2">
             {[0, 1, 2].map((index) => (

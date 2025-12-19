@@ -5,11 +5,17 @@ import Navbar from '@/components/common/Navbar';
 import PageLoader from '@/components/common/PageLoader';
 import Providers from '@/components/common/Providers';
 import { Quote } from '@/components/common/Quote';
+import Footer from '@/components/common/Footer';
 import { generateMetadata as getMetadata } from '@/config/Meta';
+import { Inter } from 'next/font/google';
 
 import { ViewTransitions } from 'next-view-transitions';
 import { Toaster } from 'sonner';
 import './globals.css';
+const inter = Inter({ 
+  subsets: ['latin'],
+  display: 'swap',
+});
 
 export const metadata = {
   ...getMetadata('/'),
@@ -26,7 +32,8 @@ export default function RootLayout({
   return (
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
-        <body className="relative font-hanken-grotesk antialiased">
+       <body className={`relative antialiased ${inter.className}`}>
+
           <Providers>
             
               {/* Custom page loader with animated dots */}
@@ -39,7 +46,8 @@ export default function RootLayout({
               <Navbar />
               <Toaster position="top-right" />
               {children}
-              <Quote />
+              {/* <Quote /> update it may be add footer layer */}
+              <Footer />
               <BackToTop />
               <UmamiAnalytics />
             

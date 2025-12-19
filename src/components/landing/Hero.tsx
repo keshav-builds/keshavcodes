@@ -120,7 +120,7 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
         >
           <div className="space-y-4 sm:space-y-4">
-            <h1 className="text-[44px] sm:text-[44px] md:text-6xl font-semibold leading-tight sm:whitespace-nowrap">
+            <h1 className="text-[42px] sm:text-[44px] md:text-6xl font-semibold leading-tight sm:whitespace-nowrap">
               Hi, I&apos;m{' '}
               <span className="inline-block">
                 <AuroraText>{name}</AuroraText>{' '}

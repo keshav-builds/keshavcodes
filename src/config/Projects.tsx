@@ -36,6 +36,7 @@ export const projects: Project[] = [
       { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
       { name: 'Tailwind CSS', icon: <TailwindCss key="tailwindcss" /> },
     ],
+    github: 'https://github.com/keshav-builds/focusbolt',
     live: 'https://focusbolt.vercel.app/',
     details: true,
     projectDetailsPageSlug: '/projects/focusbolt',

@@ -4,7 +4,6 @@ import { BlogFrontmatter } from '@/types/blog';
 import rehypeHighlight from '@shikijs/rehype';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image from 'next/image';
-// import Link from 'next/link';
 
 import Calender from '../svgs/Calender';
 import { BlogComponents } from './BlogComponents';
@@ -73,8 +72,9 @@ export function BlogContent({ frontmatter, content }: BlogContentProps) {
       <Separator className="mb-10" />
 
       {/* Blog Content */}
-      <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-p:text-muted-foreground prose-li:text-muted-foreground">
-        <MDXRemote
+<div className="prose prose-lg dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-p:text-muted-foreground prose-li:text-muted-foreground">
+      
+  <MDXRemote
           source={content}
           components={BlogComponents}
           options={{
@@ -83,7 +83,11 @@ export function BlogContent({ frontmatter, content }: BlogContentProps) {
                 [
                   rehypeHighlight,
                   {
-                    theme: 'github-dark',
+                    themes: {
+                      light: 'github-light',
+                      dark: 'github-dark',
+                    },
+             defaultColor: 'light',
                   },
                 ],
               ],

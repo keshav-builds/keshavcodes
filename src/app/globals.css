@@ -3,16 +3,6 @@
 @import 'tw-animate-css';
 @plugin '@tailwindcss/typography';
 
-@font-face {
-  font-family: 'Hanken Grotesk';
-  src: url('/fonts/HankenGrotesk-Variable.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Hanken Grotesk Italic';
-  src: url('/fonts/HankenGrotesk-Italic-Variable.ttf') format('truetype');
-}
-
 @custom-variant dark (&:is(.dark *));
 
 /* Theme inline variables */
@@ -159,7 +149,8 @@
 /* Modern minimal scrollbar  */
 
 *::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 *::-webkit-scrollbar-track {
@@ -208,6 +199,12 @@
 
 .prose .group:hover .opacity-0 {
   @apply opacity-100;
+}
+/* Shiki dark theme support */
+.dark .shiki,
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
 }
 
 /* Page fade-in animation with blur */
