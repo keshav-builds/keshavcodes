@@ -12,10 +12,11 @@ export default function PageLoader() {
   // Handle initial page load
   useEffect(() => {
     if (isInitialLoad) {
+      // Quick initial load
       const timeout = setTimeout(() => {
         setIsLoading(false);
         setIsInitialLoad(false);
-      }, 600); 
+      }, 400); // Reduced from 800ms
       return () => clearTimeout(timeout);
     }
   }, [isInitialLoad]);
@@ -24,7 +25,8 @@ export default function PageLoader() {
   useEffect(() => {
     if (!isInitialLoad) {
       setIsLoading(true);
-      const timeout = setTimeout(() => setIsLoading(false), 300); 
+      // Very quick route changes
+      const timeout = setTimeout(() => setIsLoading(false), 200); // Reduced from 700ms
       return () => clearTimeout(timeout);
     }
   }, [pathname, isInitialLoad]);
@@ -36,14 +38,18 @@ export default function PageLoader() {
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-white/98 backdrop-blur-lg dark:bg-neutral-950/98"
+          transition={{ duration: 0.15, ease: 'easeOut' }} // Faster exit
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-white dark:bg-neutral-950"
+          style={{ 
+            pointerEvents: isLoading ? 'auto' : 'none',
+            willChange: 'opacity'
+          }}
         >
           <div className="flex items-center gap-2">
             {[0, 1, 2].map((index) => (
               <motion.div
                 key={index}
-                className={`h-4 w-4 rounded-full ${
+                className={`h-3 w-3 rounded-full ${
                   index === 0
                     ? 'bg-red-500'
                     : index === 1
@@ -51,13 +57,13 @@ export default function PageLoader() {
                     : 'bg-green-500'
                 }`}
                 animate={{
-                  y: [0, -16, 0],
+                  y: [0, -12, 0],
                 }}
                 transition={{
-                  duration: 0.6,
+                  duration: 0.5, // Faster animation
                   repeat: Infinity,
                   ease: 'easeInOut',
-                  delay: index * 0.1,
+                  delay: index * 0.08,
                 }}
               />
             ))}

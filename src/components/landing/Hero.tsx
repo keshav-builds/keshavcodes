@@ -1,14 +1,21 @@
 'use client';
 
-import { AuroraText } from '@/components/ui/aura-text';
-import { heroConfig, socialLinks } from '@/config/Hero';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import {
+  ArrowRight,
+  Calendar,
+  FileText,
+  Github,
+  Linkedin,
+  Mail,
+  Send,
+} from 'lucide-react';
 import { Link } from 'next-view-transitions';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
-import Container from '../common/Container';
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip';
+import { AuroraText } from '@/components/ui/aura-text';
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
 
 const TerminalWindow = () => {
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
@@ -19,9 +26,9 @@ const TerminalWindow = () => {
       '> Full-stack Developer',
       '$ skills --list',
       '> React • Next.js • TypeScript',
-      '> Node.js • MongoDB',
+      '> Node.js • PostgreSQL • Docker',
       '$ status',
-      '> Available ✓',
+      '> Active ✓',
     ];
 
     let index = 0;
@@ -32,309 +39,183 @@ const TerminalWindow = () => {
       } else {
         clearInterval(timer);
       }
-    }, 800);
-
+    }, 500);
     return () => clearInterval(timer);
   }, []);
 
   return (
     <motion.div
-      className="w-full max-w-sm lg:max-w-md mx-auto"
-      initial={{ opacity: 0, y: 20 }}
+      className="hidden lg:block w-full max-w-[360px]"
+      initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.2 }}
+      transition={{ delay: 0.5 }}
     >
-      <div className="rounded-xl border-2 border-neutral-300 bg-white/90 backdrop-blur-xl shadow-md overflow-hidden dark:border-neutral-700 dark:bg-neutral-950/90">
-        <div className="flex items-center gap-2 px-4 py-2 bg-neutral-100/80 border-b-2 border-neutral-300 dark:bg-neutral-900/80 dark:border-neutral-700">
-          <div className="flex gap-2">
-            <div className="w-3 h-3 rounded-full bg-red-500" />
-            <div className="w-3 h-3 rounded-full bg-yellow-500" />
-            <div className="w-3 h-3 rounded-full bg-green-500" />
+      {/* Terminal with subtle box effect in dark mode */}
+      <div className="rounded-xl border border-neutral-200 bg-white/80 dark:border-neutral-700/40 dark:bg-neutral-900/70 backdrop-blur-xl shadow-sm dark:shadow-[0_0_25px_rgba(59,130,246,0.08)] overflow-hidden">
+        <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-neutral-200 dark:border-neutral-800/50">
+          <div className="flex gap-1.5">
+            <div className="w-2 h-2 rounded-full bg-red-500/60" />
+            <div className="w-2 h-2 rounded-full bg-yellow-500/60" />
+            <div className="w-2 h-2 rounded-full bg-green-500/60" />
           </div>
-          <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
-            terminal
+          <span className="ml-2 text-[9px] font-mono text-neutral-500 uppercase tracking-widest">
+            zsh
           </span>
         </div>
-
-        <div className="p-4 font-mono text-sm space-y-1 h-[180px]">
-          {displayedLines.filter(Boolean).map((line, i) => {
-            const isCommand = line?.startsWith('$') || false;
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3 }}
-                className={
-                  isCommand
-                    ? 'text-blue-500 font-semibold'
-                    : 'text-neutral-600 dark:text-neutral-400 pl-2'
-                }
-              >
-                {line}
-              </motion.div>
-            );
-          })}
-          {displayedLines.length < 7 && (
-            <motion.span
-              animate={{ opacity: [1, 0] }}
-              transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
-              className="inline-block w-2 h-4 bg-blue-500"
-            />
-          )}
+        <div className="p-4 font-mono text-[12px] space-y-1.5 h-[160px] overflow-hidden">
+          {displayedLines.map((line, i) => (
+            <div
+              key={i}
+              className={line?.startsWith('$') ? 'text-blue-600 dark:text-blue-400 font-semibold' : 'text-neutral-600 dark:text-neutral-400 pl-3'}
+            >
+              {line}
+            </div>
+          ))}
         </div>
       </div>
     </motion.div>
   );
 };
 
-export default function Hero() {
-  const { name, buttons } = heroConfig;
-
-  const copyToClipboard = async () => {
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText('developerkeshav200@gmail.com');
-        toast.success('Email copied to clipboard!');
-      } else {
-        const textArea = document.createElement('textarea');
-        textArea.value = 'developerkeshav200@gmail.com';
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        toast.success('Email copied to clipboard!');
-      }
-    } catch {
-      toast.error('Failed to copy email');
-    }
-  };
+const AvatarWithStatus = () => {
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <Container className="mx-auto max-w-6xl py-8 sm:py-6 md:py-8 px-4">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 lg:items-start items-center">
-        <motion.div
-          className="flex flex-col space-y-5 sm:space-y-5 text-center lg:text-left order-2 lg:order-1"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="space-y-4 sm:space-y-4">
-            <h1 className="text-[42px] sm:text-[44px] md:text-6xl font-semibold leading-tight sm:whitespace-nowrap">
-              Hi, I&apos;m{' '}
-              <span className="inline-block">
-                <AuroraText>{name}</AuroraText>{' '}
-                <motion.span
-                  className="inline-block scale-85"
-                  animate={{ rotate: [0, 14, -8, 14, 0] }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    repeatDelay: 1,
-                  }}
-                >
-                  👋🏻
-                </motion.span>
-              </span>
-            </h1>
-
+    <div className="relative mb-2 lg:mb-4"> {/* Reduced mobile spacing */}
+      <motion.div
+        className="relative w-40 h-40 md:w-48 md:h-48 rounded-full border border-neutral-200 dark:border-neutral-800 p-1 bg-white dark:bg-neutral-900 shadow-xl"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+      >
+        <div className="w-full h-full rounded-full overflow-hidden bg-neutral-100 dark:bg-neutral-800">
+          <img src="/assets/avatar.png" alt="Keshav" className="w-full h-full object-cover" />
+        </div>
+      </motion.div>
+      <div
+        className="absolute bottom-4 right-4 z-20 cursor-pointer"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div className="relative flex h-4 w-4">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-4 w-4 bg-green-500 border-2 border-white dark:border-neutral-950"></span>
+        </div>
+        <AnimatePresence>
+          {isHovered && (
             <motion.div
-              className="inline-flex items-center gap-2 px-3.5 py-2 sm:px-3 sm:py-1.5 rounded-full bg-green-500/10 border border-green-500/20"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 5 }}
+              className="absolute left-6 bottom-0 whitespace-nowrap bg-neutral-900 dark:bg-white text-white dark:text-black text-[10px] font-bold px-3 py-1 rounded-full shadow-xl"
             >
-              <motion.span
-                className="relative flex h-2 w-2"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500" />
-              </motion.span>
-              <span className="text-sm font-medium text-green-600 dark:text-green-400">
-                Available for opportunities
-              </span>
+              AVAILABLE FOR WORK
             </motion.div>
-          </div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+};
 
-          <p className="text-lg md:text-xl tracking-[-0.01em] text-muted-foreground">
-            Building modern web applications from design to deployment,
-            <br className="hidden md:block" /> dedicated to quality and
-            exceptional user experience.
-          </p>
+export default function Hero() {
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText('developerkeshav200@gmail.com');
+    toast.success('Email copied!');
+  };
 
-          {/* CTA Buttons*/}
-          <motion.div
-            className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 lg:justify-start justify-center pt-1 sm:pt-2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full sm:flex-1 order-1 sm:order-2"
-            >
-              <Link
-                href="/contact"
-                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-5 sm:py-3 md:px-7 md:py-3.5 rounded-lg bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white font-semibold shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 w-full overflow-hidden"
-              >
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/25 to-transparent" />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-5 h-5 flex-shrink-0 relative z-10"
-                  style={{
-                    transformBox: 'fill-box',
-                    transformOrigin: 'center',
-                    transform: 'rotate(-55deg)',
-                  }}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"
-                  />
-                </svg>
-                <span className="text-[15px] leading-none relative z-10">
-                  Message
+  const socials = [
+    { name: 'GitHub', icon: <Github size={22} />, link: 'https://github.com/keshav-builds' },
+    { name: 'X', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>, link: 'https://x.com/keshav_inTech' },
+    
+    { name: 'Email', icon: <Mail size={22} />, onClick: copyToClipboard },
+  ];
+
+  return (
+    <TooltipProvider>
+      <section className="w-full max-w-5xl mx-auto py-6 lg:py-12 px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          
+          <div className="flex flex-col space-y-6 text-center lg:text-left order-2 lg:order-1">
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-neutral-900 dark:text-white leading-tight">
+                <span className="whitespace-nowrap inline-flex items-center">
+                  Hi, I&apos;m <span className="ml-2"><AuroraText>Keshav</AuroraText></span>
+                  <motion.span
+                    className="inline-block ml-3 origin-bottom-right"
+                    animate={{ rotate: [0, 15, -10, 15, 0] }}
+                    transition={{ repeat: Infinity, duration: 2.5 }}
+                  >
+                    👋🏻
+                  </motion.span>
                 </span>
-              </Link>
-            </motion.div>
+              </h1>
+              {/* RESTORED LINE */}
+              <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-md mx-auto lg:mx-0 leading-relaxed font-medium">
+                Building modern web applications from design to deployment, dedicated to quality and user experience.
+              </p>
+            </div>
 
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full sm:flex-1 order-2 sm:order-1"
-            >
+            <div className="flex flex-row gap-3 justify-center lg:justify-start">
+              {/* Resume Button with Shimmer */}
               <Link
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-5 sm:py-3 md:px-7 md:py-3.5 rounded-lg border-2 border-foreground/20 hover:border-foreground/40 bg-background/50 backdrop-blur-sm font-semibold hover:bg-foreground/5 transition-all duration-300 w-full overflow-hidden"
+                className="group relative w-[145px] sm:w-[160px] flex items-center justify-center gap-2 px-4 py-3 border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800/40 text-neutral-800 dark:text-neutral-200 font-semibold rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all text-sm sm:text-base shadow-sm overflow-hidden"
               >
                 <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-[1200ms] ease-out bg-gradient-to-r from-transparent via-foreground/[0.08] to-transparent" />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={2}
-                  stroke="currentColor"
-                  className="w-5 h-5 flex-shrink-0 relative z-10"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
-                  />
-                </svg>
-                <span className="text-[15px] leading-none relative z-10">
-                  Resume
-                </span>
+                <FileText size={18} className="relative z-10" /> 
+                <span className="relative z-10">Resume</span>
               </Link>
-            </motion.div>
-          </motion.div>
 
-          <motion.div
-            className="flex lg:justify-start justify-center pt-3 sm:pt-5"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-          >
-            <Link
-              href="https://cal.com/keshav-codes/intro-call"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 px-3 py-2 sm:px-2 sm:py-0 rounded-lg text-base sm:text-md text-foreground hover:text-blue-600 dark:hover:text-blue-400 hover:bg-foreground/5 transition-all duration-300"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300 flex-shrink-0"
+              {/* Message Button with Shimmer */}
+              <Link
+                href="/contact"
+                className="group relative w-[145px] sm:w-[160px] flex items-center justify-center gap-2 px-4 py-3 bg-blue-500 text-white font-semibold rounded-xl hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/30 transition-all text-sm sm:text-base active:scale-95 overflow-hidden"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"
-                />
-              </svg>
-              <span>Schedule a Call</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2.5}
-                stroke="currentColor"
-                className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300 flex-shrink-0"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                />
-              </svg>
-            </Link>
-          </motion.div>
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+                <Send size={18} className="relative z-10" /> 
+                <span className="relative z-10">Message</span>
+              </Link>
+            </div>
 
-          <motion.div
-            className="flex gap-6 sm:gap-5 md:gap-6 lg:justify-start justify-center pt-4 sm:pt-2 pb-2 sm:pb-0"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-          >
-            {socialLinks.map((link) => (
-              <Tooltip key={link.name} delayDuration={0}>
-                <TooltipTrigger asChild>
-                  {link.name === 'Email' ? (
-                    <motion.button
-                      onClick={copyToClipboard}
-                      className="text-muted-foreground hover:text-foreground transition-all duration-300 min-w-[48px] min-h-[48px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center"
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      aria-label={link.name}
-                    >
-                      <span className="size-7 sm:size-6 md:size-7">
-                        {link.icon}
-                      </span>
-                    </motion.button>
-                  ) : (
-                    <motion.div
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Link
-                        href={link.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-foreground transition-all duration-300 min-w-[48px] min-h-[48px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center"
-                        aria-label={link.name}
+            <div className="pt-2 lg:pt-4 space-y-6">
+              <Link
+                href="https://cal.com/keshav"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group text-md font-semibold text-neutral-800 dark:text-neutral-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center justify-center lg:justify-start gap-2"
+              >
+                <Calendar size={20} className="text-blue-500" /> Schedule a Call
+                <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform" />
+              </Link>
+
+              <div className="flex gap-6 justify-center lg:justify-start items-center">
+                {socials.map((social, i) => (
+                  <Tooltip key={i} delayDuration={0}>
+                    <TooltipTrigger asChild>
+                      <button
+                        onClick={social.onClick || (() => window.open(social.link, '_blank', 'noopener,noreferrer'))}
+                        className="cursor-pointer text-neutral-500 hover:text-blue-600 dark:hover:text-white transition-all transform hover:scale-110 active:scale-90"
                       >
-                        <span className="size-7 sm:size-6 md:size-7">
-                          {link.icon}
-                        </span>
-                      </Link>
-                    </motion.div>
-                  )}
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{link.name}</p>
-                </TooltipContent>
-              </Tooltip>
-            ))}
-          </motion.div>
-        </motion.div>
+                        {social.icon}
+                      </button>
+                    </TooltipTrigger>
+                    <TooltipContent side="bottom" className="text-xs font-semibold">
+                      {social.name}
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+              </div>
+            </div>
+          </div>
 
-        <div className="hidden lg:flex items-center justify-end order-1 lg:order-2 pt-22 pl-1 ">
-          <TerminalWindow />
+          <div className="flex flex-col items-center lg:items-end order-1 lg:order-2">
+            <AvatarWithStatus />
+            <TerminalWindow />
+          </div>
         </div>
-      </div>
-    </Container>
+      </section>
+    </TooltipProvider>
   );
 }

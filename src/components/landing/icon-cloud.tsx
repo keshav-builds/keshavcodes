@@ -516,9 +516,13 @@ export default function Icon() {
 
   const handleStepClick = (index: number) => {
     setActiveStep(index);
-    
-    // Only scroll on mobile screens (below lg breakpoint = 1024px)
-    if (typeof window !== 'undefined' && window.innerWidth < 1024 && previewRef.current) {
+
+    // Only scroll on mobile screens
+    if (
+      typeof window !== 'undefined' &&
+      window.innerWidth < 1024 &&
+      previewRef.current
+    ) {
       // Small timeout to allow state update and animation to start
       setTimeout(() => {
         previewRef.current?.scrollIntoView({
@@ -550,9 +554,9 @@ export default function Icon() {
       <SectionHeading subHeading="Development" heading="Process" />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start py-0 mt-8">
-        {/* Workflow Steps with Visible Straight Line */}
+        {/* Workflow Steps with Straight Line */}
         <div className="relative space-y-4">
-          {/* Straight vertical line centered in circles */}
+          {/* Straight vertical line  */}
           <div className="pointer-events-none absolute left-[48px] top-[30px] bottom-[24px] w-px bg-gradient-to-b from-blue-500/40 via-*purple-500/40 via-green-500/40 to-orange-500/40" />
 
           {workflowSteps.map((step, index) => (

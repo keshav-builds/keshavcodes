@@ -23,7 +23,7 @@ export function BlogContent({ frontmatter, content }: BlogContentProps) {
   });
 
   return (
-    <article className="mx-auto max-w-3xl px-4 sm:px-6 py-8 sm:py-12">
+    <article className="mx-auto max-w-3xl px-4 sm:px-6 py-0 sm:py-0">
   
       {/* Hero Image */}
       <div className="relative aspect-video overflow-hidden rounded-xl shadow-lg mb-8">
