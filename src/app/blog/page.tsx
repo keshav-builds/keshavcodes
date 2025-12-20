@@ -38,7 +38,7 @@ export default function BlogPage() {
             Blogs
           </h1>
           <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-            Thoughts, tutorials, and insights on engineering, and programming.
+           Exploring ideas, tutorials, and insights from the world of engineering.
           </p>
         </div>
 

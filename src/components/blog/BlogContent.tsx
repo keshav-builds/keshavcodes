@@ -4,9 +4,10 @@ import { BlogFrontmatter } from '@/types/blog';
 import rehypeHighlight from '@shikijs/rehype';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image from 'next/image';
-
 import Calender from '../svgs/Calender';
 import { BlogComponents } from './BlogComponents';
+import { ShareButtons } from './ShareButtons';
+
 
 interface BlogContentProps {
   frontmatter: BlogFrontmatter;
@@ -24,7 +25,6 @@ export function BlogContent({ frontmatter, content }: BlogContentProps) {
 
   return (
     <article className="mx-auto max-w-3xl px-4 sm:px-6 py-0 sm:py-0">
-  
       {/* Hero Image */}
       <div className="relative aspect-video overflow-hidden rounded-xl shadow-lg mb-8">
         <Image
@@ -72,9 +72,8 @@ export function BlogContent({ frontmatter, content }: BlogContentProps) {
       <Separator className="mb-10" />
 
       {/* Blog Content */}
-<div className="prose prose-lg dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-p:text-muted-foreground prose-li:text-muted-foreground">
-      
-  <MDXRemote
+      <div className="prose prose-lg dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-p:text-muted-foreground prose-li:text-muted-foreground">
+        <MDXRemote
           source={content}
           components={BlogComponents}
           options={{
@@ -87,7 +86,7 @@ export function BlogContent({ frontmatter, content }: BlogContentProps) {
                       light: 'github-light',
                       dark: 'github-dark',
                     },
-             defaultColor: 'light',
+                    defaultColor: 'light',
                   },
                 ],
               ],
@@ -95,6 +94,9 @@ export function BlogContent({ frontmatter, content }: BlogContentProps) {
           }}
         />
       </div>
+
+      {/* Share Buttons */}
+      <ShareButtons title={title} />
     </article>
   );
 }

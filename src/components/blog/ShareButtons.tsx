@@ -1,0 +1,123 @@
+'use client';
+
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { Share2, Copy, Twitter, Linkedin } from 'lucide-react'; // use Twitter icon
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
+
+interface ShareButtonsProps {
+  title: string;
+}
+
+async function safeCopyToClipboard(text: string) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      textarea.style.top = '0';
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
+    }
+  } catch (err) {
+    console.error('Clipboard copy failed', err);
+    throw err;
+  }
+}
+
+export function ShareButtons({ title }: ShareButtonsProps) {
+  const [mounted, setMounted] = useState(false);
+  const [url, setUrl] = useState('');
+
+  useEffect(() => {
+    setMounted(true);
+    setUrl(window.location.href);
+  }, []);
+
+  if (!mounted) return null;
+
+  const handleCopy = async () => {
+    try {
+      await safeCopyToClipboard(url);
+      toast.success('Link copied to clipboard');
+    } catch {
+      toast.error('Could not copy link');
+    }
+  };
+
+  const shareOnTwitter = () => {
+    const text = `${title} – ${url}`;
+    window.open(
+      `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`,
+      '_blank'
+    );
+  };
+
+  const shareOnLinkedin = () => {
+    window.open(
+      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+        url
+      )}`,
+      '_blank'
+    );
+  };
+
+  return (
+    <section className="mt-12 border-t border-border/40 pt-8">
+      <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        {/* Left: text */}
+        <div className="flex items-start gap-3">
+          <div className="mt-0.5 rounded-full bg-primary/10 p-2 text-primary">
+            <Share2 className="h-4 w-4" />
+          </div>
+          <div className="space-y-1">
+            <p className="text-base font-medium">Loved this post?</p>
+            <p className="text-sm text-muted-foreground">
+              Share it with your network.
+            </p>
+          </div>
+        </div>
+
+        {/* Right: buttons */}
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleCopy}
+            className="justify-center gap-2 sm:min-w-[130px] cursor-pointer"
+          >
+            <Copy className="h-4 w-4" />
+            <span>Copy link</span>
+          </Button>
+
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={shareOnTwitter}
+            className="justify-center gap-2 sm:min-w-[130px] cursor-pointer"
+          >
+            <Twitter className="h-4 w-4" /> {/* X-style icon from Lucide */}
+            <span>Twitter</span>
+          </Button>
+
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={shareOnLinkedin}
+            className="justify-center gap-2 sm:min-w-[130px] cursor-pointer"
+          >
+            <Linkedin className="h-4 w-4" />
+            <span>LinkedIn</span>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
