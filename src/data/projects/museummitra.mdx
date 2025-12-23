@@ -1,0 +1,79 @@
+---
+title: 'MuseumMitra - Smart Museum Ticketing & Chatbot System'
+description: 'A modern museum companion that blends conversational AI, payment automation, and QR-based ticketing into one intuitive platform for visitors and staff alike.'
+image: '/project/museummitra.png'
+technologies: [
+  'React',
+  'Node.js',
+  'MongoDB',
+  'Dialogflow',
+  'Express.js',
+  'PayPal API',
+  'JWT Authentication',
+  'Multer',
+]
+live: 'https://museum-mitra.vercel.app/'
+timeline: 'September - December 2025'
+role: 'Full Stack Developer'
+team: 'Solo'
+status: 'Live Prototype'
+featured: true
+challenges: ['Dialogflow Integration', 'Payment Flow', 'Role-Based Access', 'Multilingual Chat UX']
+learnings: ['Natural Language Processing', 'Payment Gateways', 'Authentication Systems', 'Scalable API Design']
+isPublished: true
+---
+
+> **Note:** This is a **live prototype only**. The actual chatbot system for booking—including real-time payments and NLP—is not hosted yet. Core demo functionality works perfectly.
+
+## Overview
+
+**MuseumMitra** is a full-stack museum ticketing platform that combines **Dialogflow-powered chatbots**, **PayPal payments**, and **QR code verification** into one seamless experience. Visitors chat to book tickets, pay instantly, receive QR-coded emails, and staff verify entry at the gate—all powered by React, Node.js, and MongoDB.
+
+## Core Features
+
+### **Intelligent Chatbot**
+- Natural language booking via Dialogflow
+- **Multilingual support** (Hindi, English + more)
+- Real-time enquiry handling
+- Booking status updates in conversation
+
+![Chatbot Demo](https://ik.imagekit.io/jzry83ljs/chatUI.png)
+
+### **Complete Booking Flow**
+- **PayPal payment integration**
+- Instant QR code ticket generation
+- **Gmail ticket delivery**
+- MongoDB transaction logging
+
+### **QR Code System**
+- Unique QR per booking
+- **Gate verification portal** for staff
+- Real-time redeem status
+- Anti-duplicate scanning
+
+![QR Redeem Demo](https://ik.imagekit.io/jzry83ljs/TicketQR.png)
+
+### **Role-Based Dashboards**
+- **Museum Admin**: Analytics + management
+- **Staff**: QR verification + daily reports  
+- **User**: Ticket history + rebooking
+
+## Technical Highlights
+
+**Dialogflow → React Sync**: Real-time chat state management across multilingual intents  
+**PayPal Sandbox**: Full payment flow with order validation  
+**QR Security**: Unique tokens + MongoDB verification  
+**JWT Auth**: 3-role system (admin/staff/user) with protected routes
+
+## Challenges Solved
+
+- **Cross-language Dialogflow**: Intent training for Indian languages
+- **Payment Reliability**: Sandbox testing + error recovery
+- **QR Performance**: Instant generation + scan validation
+- **Real-time Updates**: WebSocket-like polling for status
+
+## Key Learnings
+
+Mastered **conversational commerce**—where chatbots handle complex flows like payments and bookings. Learned production-ready **payment gateway integration** and how **role-based systems** scale across user types. Discovered that **QR + email delivery** creates magical user experiences.
+
+---

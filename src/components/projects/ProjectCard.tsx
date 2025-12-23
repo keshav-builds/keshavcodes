@@ -86,45 +86,30 @@ export function ProjectCard({ project }: ProjectCardProps) {
             </div>
           </Link>
 
-          {/* Video play button - positioned absolute to CardHeader */}
-          {project.video && (
-            <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-              <DialogTrigger asChild>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }}
-                  className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 opacity-0 transition-all duration-500 group-hover:opacity-100"
-                >
-                  <div className="group/play relative">
-                    <div
-                      className="absolute inset-0 animate-ping rounded-full bg-white/30 dark:bg-white/20"
-                      style={{ animationDuration: '2s' }}
-                    />
-                    <div
-                      className="absolute inset-0 animate-ping rounded-full bg-white/20 dark:bg-white/10"
-                      style={{ animationDuration: '3s', animationDelay: '1s' }}
-                    />
-
-                    <div className="relative flex h-20 w-20 items-center justify-center rounded-full border border-white/40 bg-white/95 shadow-2xl shadow-black/40 backdrop-blur-md transition-all duration-300 group-hover/play:scale-110 group-hover/play:border-white group-hover/play:bg-white group-hover/play:shadow-black/60 dark:border-white/30 dark:bg-neutral-900/95 dark:group-hover/play:border-white/50 dark:group-hover/play:bg-neutral-900">
-                      <PlayCircle className="h-9 w-9 text-neutral-900 transition-transform duration-300 group-hover/play:scale-110 dark:text-white" />
-                    </div>
-                  </div>
-                </button>
-              </DialogTrigger>
-              <DialogContent className="max-w-5xl border-0 bg-black/95 p-0 backdrop-blur-2xl">
-                <video
-                  className="aspect-video w-full rounded-xl"
-                  src={project.video}
-                  autoPlay
-                  loop
-                  controls
-                />
-                <DialogTitle className="sr-only">{project.title}</DialogTitle>
-              </DialogContent>
-            </Dialog>
-          )}
+         {/* Video play button */}
+{project.video && (
+  <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+    <DialogTrigger asChild>
+      <div className="absolute inset-0 flex cursor-pointer items-center justify-center bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+        <button className="group/button flex size-14 items-center justify-center rounded-full bg-white shadow-lg transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl hover:shadow-white/20">
+          <PlayCircle className="size-8 text-gray-900 cursor-pointer transition-transform duration-300 ease-out group-hover/button:scale-110" strokeWidth={2} />
+        </button>
+      </div>
+    </DialogTrigger>
+    <DialogContent className="max-w-5xl w-full p-6 border-0 bg-black/95 backdrop-blur-xl">
+      <div className="aspect-video w-full overflow-hidden rounded-xl shadow-2xl">
+        <video
+          className="h-full w-full object-cover"
+          src={project.video}
+          autoPlay
+          loop
+          controls
+        />
+      </div>
+      <DialogTitle className="sr-only">{project.title}</DialogTitle>
+    </DialogContent>
+  </Dialog>
+)}
         </CardHeader>
 
         <CardContent className="space-y-3 p-5">
@@ -195,42 +180,41 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </Link>
 
           {/* Tech Stack */}
-<Link
-  href={project.projectDetailsPageSlug}
-  prefetch={true}
-  className="block focus:outline-none"
->
-  <div className="space-y-2.5">
-    <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
-      Built With
-    </h4>
-    <div className="flex flex-wrap gap-2">
-      {visibleTechs.map((tech, idx) => (
-        <Tooltip key={idx}>
-          <TooltipTrigger asChild>
-            <div className="group/tech flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200/60 bg-neutral-50/50 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-blue-300/60 hover:bg-blue-50/50 hover:shadow-md hover:shadow-blue-500/10 dark:border-neutral-800/60 dark:bg-neutral-900/30 dark:hover:border-blue-700/40 dark:hover:bg-blue-950/30">
-              <div className="h-5 w-5 transition-transform duration-300 group-hover/tech:rotate-6">
-                {tech.icon}
+          <Link
+            href={project.projectDetailsPageSlug}
+            prefetch={true}
+            className="block focus:outline-none"
+          >
+            <div className="space-y-2.5">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400">
+                Built With
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {visibleTechs.map((tech, idx) => (
+                  <Tooltip key={idx}>
+                    <TooltipTrigger asChild>
+                      <div className="group/tech flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200/60 bg-neutral-50/50 backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-blue-300/60 hover:bg-blue-50/50 hover:shadow-md hover:shadow-blue-500/10 dark:border-neutral-800/60 dark:bg-neutral-900/30 dark:hover:border-blue-700/40 dark:hover:bg-blue-950/30">
+                        <div className="h-5 w-5 transition-transform duration-300 group-hover/tech:rotate-6">
+                          {tech.icon}
+                        </div>
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent side="top" className="font-medium">
+                      {tech.name}
+                    </TooltipContent>
+                  </Tooltip>
+                ))}
+
+                {remainingCount > 0 && (
+                  <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200/60 bg-neutral-50/50 backdrop-blur-sm dark:border-neutral-800/60 dark:bg-neutral-900/30">
+                    <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
+                      +{remainingCount}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
-          </TooltipTrigger>
-          <TooltipContent side="top" className="font-medium">
-            {tech.name}
-          </TooltipContent>
-        </Tooltip>
-      ))}
-
-      {remainingCount > 0 && (
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-neutral-200/60 bg-neutral-50/50 backdrop-blur-sm dark:border-neutral-800/60 dark:bg-neutral-900/30">
-          <span className="text-xs font-semibold text-neutral-600 dark:text-neutral-400">
-            +{remainingCount}
-          </span>
-        </div>
-      )}
-    </div>
-  </div>
-</Link>
-
+          </Link>
         </CardContent>
 
         {/* Footer */}

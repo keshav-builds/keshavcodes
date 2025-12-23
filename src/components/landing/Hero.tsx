@@ -21,6 +21,7 @@ const TerminalWindow = () => {
   const [displayedLines, setDisplayedLines] = useState<string[]>([]);
 
   useEffect(() => {
+     setDisplayedLines([]);
     const lines = [
       '$ whoami',
       '> Full-stack Developer',

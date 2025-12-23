@@ -6,7 +6,7 @@ import MongoDB from '@/components/technologies/MongoDB';
 import Motion from '@/components/technologies/Motion';
 import Netlify from '@/components/technologies/Netlify';
 import NextJs from '@/components/technologies/NextJs';
-// import NodeJs from '@/components/technologies/NodeJs';
+import NodeJs from '@/components/technologies/NodeJs';
 import NpmIcon from '@/components/technologies/NpmIcon';
 // import PostgreSQL from '@/components/technologies/PostgreSQL';
 // import Prisma from '@/components/technologies/Prisma';
@@ -25,7 +25,7 @@ export const projects: Project[] = [
   {
     title: 'FocusBolt',
     description:
-      'Smart Pomodoro timer with ambient music, notifications, and beautiful themes - Beta testing in progress',
+      'Smart Pomodoro timer with ambient music, smart notifications, beautiful themes, and deep work analytics to help you stay focused.',
     image: '/project/focus-bolt.png',
     video:
       'https://ik.imagekit.io/jzry83ljs/focusbolt_demovideo.mp4?updatedAt=1759599474035',
@@ -42,6 +42,28 @@ export const projects: Project[] = [
     projectDetailsPageSlug: '/projects/focusbolt',
     isWorking: true, // Beta version - actively maintained
   },
+
+  {
+  title: 'MuseumMitra',
+  description: 'Smart museum ticketing with chatbot AI, PayPal payments, QR verification, and role-based dashboards for admins, staff, and visitors.',
+  image: '/project/museummitra.png',
+  video: 'https://ik.imagekit.io/jzry83ljs/museummitrademo.mp4',
+  link: 'https://museum-mitra.vercel.app/',
+  technologies: [
+    { name: 'React', icon: <ReactIcon key="react" /> },
+    { name: 'Node.js', icon: <NodeJs key="nodejs" /> },
+    { name: 'MongoDB', icon: <MongoDB key="mongodb" /> },
+
+    { name: 'TypeScript', icon: <TypeScript key="typescript" /> },
+    { name: 'Tailwind CSS', icon: <TailwindCss key="tailwindcss" /> },
+    { name: 'Next.js', icon: <NextJs key="nextjs" /> },
+  ],
+  live: 'https://museummitra.vercel.app/',
+  details: true,
+  projectDetailsPageSlug: '/projects/museummitra',
+  isWorking: true,
+}
+,
   {
     title: 'Graphit',
     description:
