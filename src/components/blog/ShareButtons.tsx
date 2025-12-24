@@ -1,8 +1,8 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
-import { Share2, Copy, Twitter, Linkedin } from 'lucide-react'; // use Twitter icon
+import { Share2, Copy } from 'lucide-react'; 
+import { FaXTwitter, FaLinkedin } from 'react-icons/fa6';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
@@ -103,7 +103,7 @@ export function ShareButtons({ title }: ShareButtonsProps) {
             onClick={shareOnTwitter}
             className="justify-center gap-2 sm:min-w-[130px] cursor-pointer"
           >
-            <Twitter className="h-4 w-4" /> {/* X-style icon from Lucide */}
+            <FaXTwitter className="h-4 w-4" />
             <span>Twitter</span>
           </Button>
 
@@ -113,7 +113,7 @@ export function ShareButtons({ title }: ShareButtonsProps) {
             onClick={shareOnLinkedin}
             className="justify-center gap-2 sm:min-w-[130px] cursor-pointer"
           >
-            <Linkedin className="h-4 w-4" />
+            <FaLinkedin className="h-4 w-4" />
             <span>LinkedIn</span>
           </Button>
         </div>

@@ -146,7 +146,7 @@ const DesignPreview = () => {
   );
 };
 
-// Code Snippet Component (clean strings)
+// Code Snippet Component 
 const CodeSnippet = () => {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -411,7 +411,8 @@ const DeployPipeline = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+ }, [stages.length]);
+
 
   return (
     <div className="space-y-4 p-8">

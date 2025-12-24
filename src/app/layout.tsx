@@ -5,7 +5,7 @@ import GradientBackground from '@/components/common/GradientBackground';
 import Navbar from '@/components/common/Navbar';
 import PageLoader from '@/components/common/PageLoader';
 import Providers from '@/components/common/Providers';
-import { Quote } from '@/components/common/Quote';
+// import { Quote } from '@/components/common/Quote';
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import { ViewTransitions } from 'next-view-transitions';
 import { Inter } from 'next/font/google';
@@ -34,10 +34,10 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body className={`relative antialiased ${inter.className}`}>
           <Providers>
-            {/* Custom page loader with animated dots */}
+            {/* Custom page loader */}
             <PageLoader />
 
-            {/* Background grid positioned absolutely behind */}
+            {/* Background positioned absolutely behind */}
             <div className="fixed inset-0 -z-10 min-h-full">
               <GradientBackground />
             </div>
@@ -50,7 +50,7 @@ export default function RootLayout({
               {children}
             </main>
             
-            {/* <Quote /> update it may be add footer layer */}
+            {/* <Quote /> disabled */}
             <Footer />
             <BackToTop />
             <UmamiAnalytics />

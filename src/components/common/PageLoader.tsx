@@ -38,7 +38,7 @@ export default function PageLoader() {
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.15, ease: 'easeOut' }} // Faster exit
+          transition={{ duration: 0.15, ease: 'easeOut' }} 
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-white dark:bg-neutral-950"
           style={{ 
             pointerEvents: isLoading ? 'auto' : 'none',
@@ -60,7 +60,7 @@ export default function PageLoader() {
                   y: [0, -12, 0],
                 }}
                 transition={{
-                  duration: 0.5, // Faster animation
+                  duration: 0.5, 
                   repeat: Infinity,
                   ease: 'easeInOut',
                   delay: index * 0.08,

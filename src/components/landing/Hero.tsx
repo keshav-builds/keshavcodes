@@ -6,11 +6,11 @@ import {
   Calendar,
   FileText,
   Github,
-  Linkedin,
   Mail,
   Send,
 } from 'lucide-react';
 import { Link } from 'next-view-transitions';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
@@ -89,7 +89,14 @@ const AvatarWithStatus = () => {
         animate={{ scale: 1, opacity: 1 }}
       >
         <div className="w-full h-full rounded-full overflow-hidden bg-neutral-100 dark:bg-neutral-800">
-          <img src="/assets/avatar.png" alt="Keshav" className="w-full h-full object-cover" />
+          <Image 
+            src="/assets/avatar.png" 
+            alt="Keshav" 
+            width={192}
+            height={192}
+            className="w-full h-full object-cover"
+            priority
+          />
         </div>
       </motion.div>
       <div
@@ -127,7 +134,6 @@ export default function Hero() {
   const socials = [
     { name: 'GitHub', icon: <Github size={22} />, link: 'https://github.com/keshav-builds' },
     { name: 'X', icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>, link: 'https://x.com/keshav_inTech' },
-    
     { name: 'Email', icon: <Mail size={22} />, onClick: copyToClipboard },
   ];
 
@@ -150,7 +156,6 @@ export default function Hero() {
                   </motion.span>
                 </span>
               </h1>
-              {/* RESTORED LINE */}
               <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-400 max-w-md mx-auto lg:mx-0 leading-relaxed font-medium">
                 Building modern web applications from design to deployment, dedicated to quality and user experience.
               </p>
@@ -159,7 +164,7 @@ export default function Hero() {
             <div className="flex flex-row gap-3 justify-center lg:justify-start">
               {/* Resume Button with Shimmer */}
               <Link
-                href="/resume.pdf"
+                href="/resume"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative w-[145px] sm:w-[160px] flex items-center justify-center gap-2 px-4 py-3 border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-800/40 text-neutral-800 dark:text-neutral-200 font-semibold rounded-xl hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all text-sm sm:text-base shadow-sm overflow-hidden"
