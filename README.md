@@ -1,60 +1,63 @@
-# Portfolio by keshavcodes
+# Portfolio by Keshav 
 
-A modern, responsive portfolio website built with Next.js , TypeScript, Tailwind CSS, and Shadcn UI. Features a blog system, project showcase and contact form .
+A modern, responsive, and minimal developer portfolio built with **Next.js**, **TypeScript**, **Tailwind CSS**, and **Shadcn UI**.  
+It showcases my work, projects, and thoughts through a clean interface with dark mode, SEO optimization, and smooth performance.
 
-## Features
+## Live
+[![Deployed Portfolio](https://img.shields.io/badge/Live%20Demo-Online-brightgreen?style=for-the-badge&logo=vercel&logoColor=white)](https://keshavcodes-portfolio.vercel.app/)
 
-- **Next.js 15** with App Router
-- **Tailwind CSS** for styling
-- **Shadcn UI** components
-- **Dark/Light** mode
-- **Responsive** design
-- **MDX** for blog posts and project details
-- **Contact Form** with Telegram integration
-- **SEO** optimized
-- **TypeScript** for type safety
-- **Umami Analytics** for privacy-focused web analytics
+## Preview
+
+![Portfolio Screenshot](./meta/hero.png)
+
+## ⚡ Features
+
+- Built with **Next.js 15** (App Router)
+- Elegant styling using **Tailwind CSS + Shadcn UI**
+- **Dark & Light** mode support
+- Fully **responsive** across all devices
+- **MDX-powered** blog system and project pages
+- Integrated **contact form** (with Telegram support)
+- **SEO optimized** and analytics-ready (Umami)
+- Written in **TypeScript** for reliability and maintainability
+
+## Quick Start
+
+Clone the repository and get running locally in minutes.
+
+```bash
 
 
-## Configuration
+# Clone this repository
 
-The project uses configuration files in the `src/config` directory for easy customization:
+git clone https://github.com/keshav-builds/keshavcodes.git
 
-- `About.tsx` - About section content
-- `Contact.tsx` - Contact form settings
-- `Experience.tsx` - Work experience details
-- `Footer.tsx` - Footer links and content
-- `Gears.tsx` - Setup/gear section
-- `Hero.tsx` - Hero section content
-- `Meta.tsx` - SEO and metadata
-- `Navbar.tsx` - Navigation links
-- `Projects.tsx` - Project showcase settings
-- `Quote.ts` - Random quotes configuration
-- `Resume.ts` - Resume section details
-- `Setup.tsx` - Development setup information
-- `cat.ts` - Enable disable the cat
+# Navigate into the project
 
-## Adding New Technology Icons
+cd portfolio
 
-1. Visit [Devicon](https://devicon.dev/) to find the icon you want to add
-2. Create a new component in `src/components/technologies/`
-3. Follow the existing component structure for consistency
+# Install dependencies
 
-Example:
+npm install
 
-```tsx
-export const NewTechIcon = () => {
-  return <svg>// SVG content from devicon</svg>;
-};
+# Run development server
+
+npm run dev
+
+# Open it in your browser
+
+http://localhost:3000
+
 ```
 
-## Adding Content
+## Customization
 
-### Blog Posts
+All content (About, Projects, Contact, etc.) is easily configurable inside the `src/config` directory.  
+Each section has its own file (e.g., `Hero.tsx`, `Projects.tsx`, `Contact.tsx`) for quick edits.
 
-1. Create a new MDX file in `src/data/blog/`
-2. Add metadata and content following existing post structure
-3. Add blog thumbnail in `public/blog/`
+## Analytics & SEO
 
+- Integrated with **Umami Analytics** for privacy-focused tracking  
+- Metadata and Open Graph tags handled via `src/config/Meta.tsx`
 
 
