@@ -5,7 +5,7 @@ export default function UmamiAnalytics() {
   const umamiId = process.env.NEXT_PUBLIC_UMAMI_ID
 
   if (!umamiSrc || !umamiId) {
-    console.log('Umami Analytics is not configured.')
+    // console.log('Umami Analytics is not configured.')
     return null
   }
 
