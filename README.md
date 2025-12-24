@@ -4,11 +4,11 @@ A modern, responsive, and minimal developer portfolio built with **Next.js**, **
 It showcases my work, projects, and thoughts through a clean interface with dark mode, SEO optimization, and smooth performance.
 
 ## Live
-[![Deployed Portfolio](https://img.shields.io/badge/Live%20Demo-Online-brightgreen?style=for-the-badge&logo=vercel&logoColor=white)](https://keshavcodes-portfolio.vercel.app/)
+[![Deployed Portfolio](https://img.shields.io/badge/Live%20Demo-Online-brightgreen?style=for-the-badge&logo=vercel&logoColor=white)](https://keshavcodes.in/)
 
 ## Preview
 
-![Portfolio Screenshot](./meta/hero.png)
+![Portfolio Screenshot](./public/meta/hero.png)
 
 ## ⚡ Features
 
