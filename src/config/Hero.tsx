@@ -6,7 +6,7 @@ import Mail from '@/components/svgs/Mail';
 export const heroConfig = {
   // Personal Information
   name: 'Keshav',
-  title: 'A Full Stack web developer.',
+  title: 'Full Stack web developer.',
   avatar: '/assets/avatar.png',
 // Skills Configuration
   skills: [

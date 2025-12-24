@@ -20,7 +20,6 @@ export const siteConfig = {
     name: about.name,
     twitter: '@keshav_inTech',
     github: 'keshav-builds',
-  
   },
   keywords: [
     'portfolio',
@@ -59,22 +58,6 @@ export const pageMetadata: Record<string, PageMeta> = {
     ogImage: '/assets/avatar.png',
     twitterCard: 'summary',
   },
-
-  // Work Experience page
-  // '/work-experience': {
-  //   title: 'Work Experience - Professional Journey',
-  //   description:
-  //     'Explore my professional work experience across different companies and roles in software development.',
-  //   keywords: [
-  //     'work experience',
-  //     'career',
-  //     'professional',
-  //     'software developer',
-  //     'employment history',
-  //   ],
-  //   ogImage: '/meta/work.png',
-  //   twitterCard: 'summary_large_image',
-  // },
 
   // Projects page
   '/projects': {
@@ -120,41 +103,8 @@ export const pageMetadata: Record<string, PageMeta> = {
       'qualifications',
       'download',
     ],
+    ogImage: '/meta/opengraph-image.png',
   },
-
-  // Gears page
-  // '/gears': {
-  //   title: 'Gears - My Setup & Tools',
-  //   description:
-  //     'Discover the tools, devices, and software I use to get my work done efficiently.',
-  //   keywords: [
-  //     'setup',
-  //     'tools',
-  //     'devices',
-  //     'software',
-  //     'productivity',
-  //     'development environment',
-  //   ],
-  //   ogImage: '/meta/gears.png',
-  //   twitterCard: 'summary_large_image',
-  // },
-
-  // Setup page
-  // '/setup': {
-  //   title: 'Setup Guide - VS Code Configuration',
-  //   description:
-  //     'Complete guide to setting up VS Code with my preferred configuration, extensions, and fonts for optimal development.',
-  //   keywords: [
-  //     'vscode',
-  //     'setup',
-  //     'configuration',
-  //     'extensions',
-  //     'development environment',
-  //     'guide',
-  //   ],
-  //   ogImage: '/meta/setup.png',
-  //   twitterCard: 'summary_large_image',
-  // },
 };
 
 // Helper function to get metadata for a specific page
@@ -165,6 +115,11 @@ export function getPageMetadata(pathname: string): PageMeta {
 // Helper function to generate complete metadata object for Next.js
 export function generateMetadata(pathname: string) {
   const pageMeta = getPageMetadata(pathname);
+
+  // Convert relative image paths to absolute URLs
+  const ogImageUrl = pageMeta.ogImage
+    ? `${siteConfig.url}${pageMeta.ogImage}`
+    : `${siteConfig.url}${siteConfig.ogImage}`;
 
   return {
     metadataBase: new URL(siteConfig.url),
@@ -181,7 +136,7 @@ export function generateMetadata(pathname: string) {
       siteName: siteConfig.title,
       images: [
         {
-          url: pageMeta.ogImage || siteConfig.ogImage,
+          url: ogImageUrl, // Absolute URL
           width: 1200,
           height: 630,
           alt: pageMeta.title,
@@ -193,7 +148,7 @@ export function generateMetadata(pathname: string) {
       title: pageMeta.title,
       description: pageMeta.description,
       creator: siteConfig.author.twitter,
-      images: [pageMeta.ogImage || siteConfig.ogImage],
+      images: [ogImageUrl], 
     },
     robots: {
       index: true,
