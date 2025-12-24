@@ -5,11 +5,13 @@ import GradientBackground from '@/components/common/GradientBackground';
 import Navbar from '@/components/common/Navbar';
 import PageLoader from '@/components/common/PageLoader';
 import Providers from '@/components/common/Providers';
+import TawkChat from '@/components/common/TawkChat';
 // import { Quote } from '@/components/common/Quote';
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import { ViewTransitions } from 'next-view-transitions';
 import { Inter } from 'next/font/google';
 import { Toaster } from 'sonner';
+
 import './globals.css';
 
 const inter = Inter({
@@ -41,19 +43,18 @@ export default function RootLayout({
             <div className="fixed inset-0 -z-10 min-h-full">
               <GradientBackground />
             </div>
-            
+
             <Navbar />
             <Toaster position="top-right" />
-            
+
             {/* Main content wrapper with fade-in */}
-            <main className="relative">
-              {children}
-            </main>
-            
+            <main className="relative">{children}</main>
+
             {/* <Quote /> disabled */}
             <Footer />
             <BackToTop />
             <UmamiAnalytics />
+            <TawkChat />
           </Providers>
         </body>
       </html>
