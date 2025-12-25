@@ -22,5 +22,5 @@ export const mySkills = [
 
 export const about = {
   name: 'Keshav',
-  description: `Full-stack developer with hands-on experience in developing end-to-end web applications`,
+  description: `Building modern web applications from design to deployment, dedicated to quality and user experience.`,
 };

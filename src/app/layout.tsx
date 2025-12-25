@@ -5,7 +5,7 @@ import GradientBackground from '@/components/common/GradientBackground';
 import Navbar from '@/components/common/Navbar';
 import PageLoader from '@/components/common/PageLoader';
 import Providers from '@/components/common/Providers';
-import TawkChat from '@/components/common/TawkChat';
+import ChatwayChat from '@/components/common/ChatwayChat';
 // import { Quote } from '@/components/common/Quote';
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import { ViewTransitions } from 'next-view-transitions';
@@ -54,7 +54,7 @@ export default function RootLayout({
             <Footer />
             <BackToTop />
             <UmamiAnalytics />
-            <TawkChat />
+            <ChatwayChat />
           </Providers>
         </body>
       </html>
