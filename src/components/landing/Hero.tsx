@@ -187,7 +187,7 @@ export default function Hero() {
 
             <div className="pt-2 lg:pt-4 space-y-6">
               <Link
-                href="https://cal.com/keshav"
+                href="https://cal.com/keshav-codes/intro-call"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group text-md font-semibold text-neutral-800 dark:text-neutral-200 hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex items-center justify-center lg:justify-start gap-2"
