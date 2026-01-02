@@ -7,6 +7,7 @@ import PageLoader from '@/components/common/PageLoader';
 import Providers from '@/components/common/Providers';
 import ChatwayChat from '@/components/common/ChatwayChat';
 // import { Quote } from '@/components/common/Quote';
+import CanvasCursor from '@/components/common/CanvasCursor';
 import { generateMetadata as getMetadata } from '@/config/Meta';
 import { ViewTransitions } from 'next-view-transitions';
 import { Inter } from 'next/font/google';
@@ -38,7 +39,7 @@ export default function RootLayout({
           <Providers>
             {/* Custom page loader */}
             <PageLoader />
-
+     <CanvasCursor />
             {/* Background positioned absolutely behind */}
             <div className="fixed inset-0 -z-10 min-h-full">
               <GradientBackground />
