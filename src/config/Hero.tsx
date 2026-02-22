@@ -64,7 +64,7 @@ export const socialLinks = [
   },
   {
     name: 'Email',
-    href: 'mailto:developerkeshav200@gmail.com',
+    href: 'mailto:keshavsinghal.dev@gmail.com',
     icon: <Mail />,
     
   },

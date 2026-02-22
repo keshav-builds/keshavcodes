@@ -127,7 +127,7 @@ const AvatarWithStatus = () => {
 
 export default function Hero() {
   const copyToClipboard = () => {
-    navigator.clipboard.writeText('developerkeshav200@gmail.com');
+    navigator.clipboard.writeText('keshavsinghal.dev@gmail.com');
     toast.success('Email copied!');
   };
 

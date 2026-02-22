@@ -5,6 +5,6 @@ export const footerConfig = {
   socials: {
     x: 'https://x.com/heyKeshavCodes',
     github: 'https://github.com/keshavcodes-in',
-    email: 'developerkeshav200@gmail.com',
+    email: 'keshavsinghal.dev@gmail.com',
   },
 };
